@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 module Drasil.Sections.SpecificSystemDescription 
   ( specSysDescr
   , probDescF
@@ -16,6 +17,9 @@ module Drasil.Sections.SpecificSystemDescription
   , listofTablesToRefs
   ) where
 
+import Drasil.DocumentLanguage.Core (DLPlate(scsSub, ssdSub), SCSSub(IMs),
+  SolChSpec, SSDSub(SSDSolChSpec))
+
 import Language.Drasil
 import Utils.Drasil
 
@@ -31,8 +35,12 @@ import Data.Drasil.IdeaDicts (inModel, thModel)
 
 import qualified Drasil.DocLang.SRS as SRS
 
+import Control.Applicative (Alternative(empty))
 import Control.Lens ((^.))
+import Data.Functor.Constant (Constant(Constant))
+import Data.Generics.Multiplate (firstFor, preorderFold, purePlate)
 import Data.Maybe
+import Data.Monoid (First(First))
 
 -- | Specific System description section builder. Takes the system and subsections.
 specSysDescr :: [Section] -> Section
@@ -82,14 +90,19 @@ goalStmtF givenInputs otherContents = SRS.goalStmt (intro:otherContents) []
   where intro = mkParagraph $ S "Given" +:+ foldlList Comma List givenInputs `sC` S "the" +:+ 
                 plural goalStmt +: S "are"
 
+imRefPlate :: DLPlate (Constant (First Reference))
+imRefPlate = preorderFold $ purePlate {
+  scsSub = Constant . First <$> \case
+    IMs{} -> pure SRS.inModelLabel
+    _ -> empty
+}
 
-solutionCharSpecIntro :: (Idea a) => a -> Section -> Contents
-solutionCharSpecIntro progName instModelSection = foldlSP [S "The", plural inModel, 
-  S "that govern", short progName, S "are presented in" +:+. 
-  makeRef2S instModelSection, S "The", phrase information, S "to understand", 
-  S "meaning" `ofThe` plural inModel, 
-  S "and their derivation is also presented, so that the", plural inModel, 
-  S "can be verified"]
+solutionCharSpecIntro :: (Idea a) => a -> SolChSpec -> Contents
+solutionCharSpecIntro progName = foldlSP . maybe [] (\r -> [S "The", plural inModel,
+  S "that govern", short progName, S "are presented in" +:+. Ref r,
+  S "The", phrase information, S "to understand", S "meaning" `ofThe` plural inModel,
+  S "and their derivation is also presented, so that the", plural inModel,
+  S "can be verified"]) . firstFor ssdSub imRefPlate . SSDSolChSpec
 
 
 -- wrappers for assumpIntro. Use assumpF' if genDefs is not needed

@@ -30,7 +30,7 @@ import Drasil.Sections.TableOfAbbAndAcronyms (tableOfAbbAndAcronyms)
 import Drasil.Sections.TableOfSymbols (table)
 import Drasil.Sections.TableOfUnits (tableOfUnits)
 import qualified Drasil.DocLang.SRS as SRS (appendix, dataDefn, genDefn,
-  genSysDes, inModel, likeChg, unlikeChg, probDesc, reference, solCharSpec,
+  genSysDes, likeChg, unlikeChg, probDesc, reference, solCharSpec,
   stakeholder, thModel, tOfSymb, userChar, propCorSol, offShelfSol)
 import qualified Drasil.Sections.AuxiliaryConstants as AC (valsOfAuxConstantsF)
 import qualified Drasil.Sections.GeneralSystDesc as GSD (genSysF, genSysIntro,
@@ -50,6 +50,7 @@ import Data.Drasil.Concepts.Documentation (assumpDom, likelyChg, refmat,
 
 import Data.Function (on)
 import Data.List (nub, sortBy)
+
 
 -- | Creates a document from a document description and system information
 mkDoc :: DocDesc -> (IdeaDict -> IdeaDict -> Sentence) -> SystemInformation -> Document
@@ -250,8 +251,8 @@ mkSSDProb _ (PDProg prob subSec subPD) = SSD.probDescF prob (subSec ++ map mkSub
         mkSubPD (Goals ins g) = SSD.goalStmtF ins (mkEnumSimpleD g)
 
 mkSolChSpec :: SystemInformation -> SolChSpec -> Section
-mkSolChSpec si (SCSProg l) =
-  SRS.solCharSpec [SSD.solutionCharSpecIntro (siSys si) imStub] $
+mkSolChSpec si ssdscs@(SCSProg l) =
+  SRS.solCharSpec [SSD.solutionCharSpecIntro (siSys si) ssdscs] $
     map (mkSubSCS si) l
   where
     mkSubSCS :: SystemInformation -> SCSSub -> Section
@@ -290,10 +291,9 @@ helperCI a c = over defn (\x -> foldlSent_ [x, refby $ helperRefs a c]) a
 {--}
 
 -- | Section stubs for implicit referencing
-tmStub, ddStub, imStub, pdStub :: Section
+tmStub, ddStub, pdStub :: Section
 tmStub = SRS.thModel   [] []
 ddStub = SRS.dataDefn  [] []
-imStub = SRS.inModel   [] []
 pdStub = SRS.probDesc  [] []
 
 -- | Helper for making the 'Requirements' section
