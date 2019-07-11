@@ -9,12 +9,12 @@ module Drasil.DocumentLanguage where
 
 import Drasil.DocDecl (SRSDecl, mkDocDesc)
 import Drasil.DocumentLanguage.Core (AppndxSec(..), AuxConstntSec(..),
-  DerivationDisplay(..), DLPlate(docSec, scsSub), DocDesc, DocSection(..),
-  OffShelfSolnsSec(..), GSDSec(..), GSDSub(..), IntroSec(..), IntroSub(..),
-  LCsSec(..), LFunc(..), Literature(..), PDSub(..), ProblemDescription(..),
-  RefSec(..), RefTab(..), ReqrmntSec(..), ReqsSub(..), SCSSub(..), StkhldrSec(..), StkhldrSub(..), SolChSpec(..),
-  SSDSec(..), SSDSub(..), TConvention(..), TraceabilitySec(..), TraceConfig(..),
-  TSIntro(..), TUIntro(..), UCsSec(..))
+  DerivationDisplay(..), DLPlate(auxConsSec, docSec, scsSub), DocDesc,
+  DocSection(..), OffShelfSolnsSec(..), GSDSec(..), GSDSub(..), IntroSec(..),
+  IntroSub(..), LCsSec(..), LFunc(..), Literature(..), PDSub(..), ProblemDescription(..),
+  RefSec(..), RefTab(..), ReqrmntSec(..), ReqsSub(..), SCSSub(..), StkhldrSec(..),
+  StkhldrSub(..), SolChSpec(..), SSDSec(..), SSDSub(..), TConvention(..),
+  TraceabilitySec(..), TraceConfig(..), TSIntro(..), TUIntro(..), UCsSec(..))
 import Drasil.DocumentLanguage.Definitions (ddefn, derivation, instanceModel,
   gdefn, tmodel, helperRefs)
 import Drasil.ExtractDocDesc (getDocDesc, egetDocDesc)
@@ -145,7 +145,8 @@ quantPlate = preorderFold $ purePlate {
   scsSub = Constant <$> \case
     (Constraints _ c) -> map qw c
     (CorrSolnPpties c _) -> map qw c
-    _ -> mempty
+    _ -> mempty,
+  auxConsSec = Constant <$> \(AuxConsProg _ c) -> map qw c
 }
 
 -- | table of symbols constructor
