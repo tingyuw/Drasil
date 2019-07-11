@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 ---------------------------------------------------------------------------
 -- | Start the process of moving away from Document as the main internal
 -- representation of information, to something more informative.
@@ -8,10 +9,10 @@ module Drasil.DocumentLanguage where
 
 import Drasil.DocDecl (SRSDecl, mkDocDesc)
 import Drasil.DocumentLanguage.Core (AppndxSec(..), AuxConstntSec(..),
-  DerivationDisplay(..), DocDesc, DocSection(..), OffShelfSolnsSec(..), GSDSec(..),
-  GSDSub(..), IntroSec(..), IntroSub(..), LCsSec(..), LFunc(..), Literature(..),
-  PDSub(..), ProblemDescription(..), RefSec(..), RefTab(..), ReqrmntSec(..),
-  ReqsSub(..), SCSSub(..), StkhldrSec(..), StkhldrSub(..), SolChSpec(..),
+  DerivationDisplay(..), DLPlate(docSec, scsSub), DocDesc, DocSection(..),
+  OffShelfSolnsSec(..), GSDSec(..), GSDSub(..), IntroSec(..), IntroSub(..),
+  LCsSec(..), LFunc(..), Literature(..), PDSub(..), ProblemDescription(..),
+  RefSec(..), RefTab(..), ReqrmntSec(..), ReqsSub(..), SCSSub(..), StkhldrSec(..), StkhldrSub(..), SolChSpec(..),
   SSDSec(..), SSDSub(..), TConvention(..), TraceabilitySec(..), TraceConfig(..),
   TSIntro(..), TUIntro(..), UCsSec(..))
 import Drasil.DocumentLanguage.Definitions (ddefn, derivation, instanceModel,
@@ -53,7 +54,9 @@ import qualified Drasil.DocumentLanguage.TraceabilityMatrix as TM (traceMGF,
 import Data.Drasil.Concepts.Documentation (likelyChg, refmat, section_,
   software, unlikelyChg)
 
+import Data.Functor.Constant (Constant(Constant))
 import Data.Function (on)
+import Data.Generics.Multiplate (foldFor, preorderFold, purePlate)
 import Data.List (nub, sortBy)
 
 -- | Creates a document from a document description and system information
@@ -112,7 +115,8 @@ mkRefSec si dd (RefProg c l) = section (titleize refmat) [c]
       [tsIntro con,
                 LlC $ table Equational (sortBySymbol
                 $ filter (`hasStageSymbol` Equational) 
-                (nub $ map qw v ++ ccss' (getDocDesc dd) (egetDocDesc dd) cdb))
+                (nub $ map qw v ++ concatMap (foldFor docSec quantPlate) dd ++ 
+                      ccss' (getDocDesc dd) (egetDocDesc dd) cdb))
                 atStart] []
     mkSubRef SI {_sysinfodb = cdb} (TSymb' f con) =
       mkTSymb (ccss (getDocDesc dd) (egetDocDesc dd) cdb) f con
@@ -135,6 +139,13 @@ mkTSymb v f c = SRS.tOfSymb [tsIntro c,
         lf (DefnExcept cs) = \x -> if (x ^. uid) `elem` map (^.uid) cs then
           atStart x else x ^. defn
         lf TAD = \tDef -> titleize tDef :+: S ":" +:+ (tDef ^. defn)
+
+quantPlate :: DLPlate (Constant [QuantityDict])
+quantPlate = preorderFold $ purePlate {
+  scsSub = Constant <$> \case
+    (Constraints _ c) -> map qw c
+    _ -> mempty
+}
 
 -- | table of symbols constructor
 tsymb, tsymb' :: [TSIntro] -> RefTab
