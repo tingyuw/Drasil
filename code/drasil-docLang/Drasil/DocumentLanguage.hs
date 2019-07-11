@@ -144,6 +144,7 @@ quantPlate :: DLPlate (Constant [QuantityDict])
 quantPlate = preorderFold $ purePlate {
   scsSub = Constant <$> \case
     (Constraints _ c) -> map qw c
+    (CorrSolnPpties c _) -> map qw c
     _ -> mempty
 }
 

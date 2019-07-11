@@ -155,7 +155,7 @@ data SCSSub where
   Constraints    :: (HasUncertainty c, Quantity c, Constrained c, HasReasVal c, MayHaveUnit c) => Sentence -> [c] -> SCSSub
 --                  Sentence -> [LabelledContent] Fields  -> [UncertainWrapper] -> [ConstrainedChunk] -> SCSSub --FIXME: temporary definition?
 --FIXME: Work in Progress ^
-  CorrSolnPpties :: (Quantity c, Constrained c) => [c] -> [Contents] -> SCSSub
+  CorrSolnPpties :: (Quantity c, Constrained c, MayHaveUnit c) => [c] -> [Contents] -> SCSSub
 data DerivationDisplay = ShowDerivation
                        | HideDerivation
 {--}

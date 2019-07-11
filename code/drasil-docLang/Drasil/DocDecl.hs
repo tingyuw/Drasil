@@ -64,7 +64,7 @@ data SCSSub where
   DDs            :: [Sentence] -> Fields  -> DL.DerivationDisplay -> SCSSub
   IMs            :: [Sentence] -> Fields  -> DL.DerivationDisplay -> SCSSub
   Constraints    :: (HasUncertainty c, Quantity c, Constrained c, HasReasVal c, MayHaveUnit c) => Sentence -> [c] -> SCSSub
-  CorrSolnPpties :: (Quantity c, Constrained c) => [c] -> [Contents] -> SCSSub
+  CorrSolnPpties :: (Quantity c, Constrained c, MayHaveUnit c) => [c] -> [Contents] -> SCSSub
 newtype ReqrmntSec = ReqsProg [ReqsSub]
 
 data ReqsSub where

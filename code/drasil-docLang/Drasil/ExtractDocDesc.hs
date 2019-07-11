@@ -3,7 +3,6 @@ module Drasil.ExtractDocDesc (getDocDesc, egetDocDesc, ciGetDocDesc, sentencePla
 
 import Control.Lens((^.))
 import Drasil.DocumentLanguage.Core
-import Drasil.Sections.SpecificSystemDescription (inDataConstTbl, outDataConstTbl)
 import Language.Drasil hiding (Manual, Vector, Verb)
 import Theory.Drasil (Theory(..))
 import Data.List(transpose)
@@ -31,7 +30,7 @@ secConPlate mCon mSec = preorderFold $ purePlate {
     (PhySysDesc _ _ lc c) -> mCon [lc] `mappend` mCon c
     (Goals _ _) -> mempty,
   scsSub = Constant <$> \case
-    (CorrSolnPpties c cs) -> mCon [outDataConstTbl c] `mappend` mCon cs
+    (CorrSolnPpties _ cs) -> mCon cs
     _ -> mempty,
   reqSub = Constant <$> \case
     (FReqsSub _ c) -> mCon c
