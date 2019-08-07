@@ -92,7 +92,7 @@ sentencePlate f = appendPlate (secConPlate (f . concatMap getCon') $ f . concatM
     introSec = Constant . f <$> \(IntroProg s1 s2 _) -> [s1, s2],
     introSub = Constant . f <$> \case
       (IPurpose s) -> [s]
-      (IScope s1 s2) -> [s1, s2]
+      (IScope s) -> [s]
       (IChar s1 s2 s3) -> concat [s1, s2, s3]
       (IOrgSec s1 _ _ s2) -> [s1, s2],
     stkSec = Constant . f <$> \case
@@ -129,7 +129,10 @@ sentencePlate f = appendPlate (secConPlate (f . concatMap getCon') $ f . concatM
     def :: Definition a => [a] -> [Sentence]
     def = map (^. defn)
     der :: HasDerivation a => [a] -> [Sentence]
-    der = concatMap (^. derivations)
+    der = concatMap (getDerivSent . (^. derivations))
+    getDerivSent :: Maybe Derivation -> [Sentence]
+    getDerivSent Nothing = []
+    getDerivSent (Just (Derivation h s)) = h : s
     notes :: HasAdditionalNotes a => [a] -> [Sentence]
     notes = concatMap (^. getNotes)
 
@@ -150,6 +153,7 @@ getCon :: RawContent -> [Sentence]
 getCon (Table s1 s2 t _) = isVar (s1, transpose s2) ++ [t]
 getCon (Paragraph s)       = [s]
 getCon EqnBlock{}          = []
+getCon (DerivBlock h d)    = h : concatMap getCon d
 getCon (Enumeration lst)   = getLT lst
 getCon (Figure l _ _)    = [l]
 getCon (Bib bref)          = getBib bref

@@ -2,15 +2,15 @@ module Main (main) where
 
 import Language.Drasil.Code (Choices(..), CodeSpec, codeSpec, Comments(..), 
   ConstraintBehaviour(..), ImplementationType(..), Lang(..), Logging(..), 
-  Structure(..))
+  Structure(..), InputModule(..))
 import Language.Drasil.Generate (gen, genCode)
 import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website))
 
-import Drasil.GlassBR.Body (systInfo, srs, printSetting)
+import Drasil.GlassBR.Body (si, srs, printSetting)
 import Drasil.GlassBR.ModuleDefs (allMods)
 
 code :: CodeSpec
-code = codeSpec systInfo choices allMods
+code = codeSpec si choices allMods
 
 choices :: Choices
 choices = Choices {
@@ -18,10 +18,11 @@ choices = Choices {
   impType = Program,
   logFile = "log.txt",
   logging = LogAll,
-  comments = CommentNone,
+  comments = [CommentFunc, CommentClass, CommentMod],
   onSfwrConstraint = Exception,
   onPhysConstraint = Exception,
-  inputStructure = Bundled
+  inputStructure = Bundled,
+  inputModule = Separated
 }
   
 main :: IO()

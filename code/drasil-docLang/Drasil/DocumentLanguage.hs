@@ -33,10 +33,10 @@ import qualified Data.Map as Map (elems)
 
 import Drasil.Sections.TableOfAbbAndAcronyms (tableOfAbbAndAcronyms)
 import Drasil.Sections.TableOfSymbols (table, symbTableRef)
-import Drasil.Sections.TableOfUnits (tableOfUnits, unitTableRef)
+import Drasil.Sections.TableOfUnits (tOfUnitDesc, tOfUnitSIName, unitTableRef)
 import qualified Drasil.DocLang.SRS as SRS (appendix, dataDefn, genDefn,
   genSysDes, inModel, likeChg, unlikeChg, probDesc, reference, solCharSpec,
-  stakeholder, thModel, tOfSymb, userChar, offShelfSol)
+  stakeholder, thModel, tOfSymb, tOfUnit, userChar, offShelfSol)
 import qualified Drasil.Sections.AuxiliaryConstants as AC (valsOfAuxConstantsF)
 import qualified Drasil.Sections.GeneralSystDesc as GSD (genSysF, genSysIntro,
   systCon, usrCharsF, sysContxt)
@@ -100,9 +100,9 @@ mkRefSec si dd (RefProg c l) = section (titleize refmat) [c]
   (map (mkSubRef si) l) (makeSecRef "RefMat" "Reference Material") --DO NOT CHANGE LABEL OR THINGS WILL BREAK -- see Language.Drasil.Document.Extract
   where
     mkSubRef :: SystemInformation -> RefTab -> Section
-    mkSubRef si' TUnits = mkSubRef si' $ TUnits' defaultTUI
-    mkSubRef SI {_sysinfodb = db} (TUnits' con) =
-        tableOfUnits (nub $ sortBy compUnitDefn $ extractUnits dd db) (tuIntro con)
+    mkSubRef si' TUnits = mkSubRef si' $ TUnits' defaultTUI tOfUnitSIName
+    mkSubRef SI {_sysinfodb = db} (TUnits' con f) =
+        SRS.tOfUnit [tuIntro con, LlC $ f (nub $ sortBy compUnitDefn $ extractUnits dd db)] []
     -- FIXME: _quants = v should be removed from this binding and symbols should
     -- be acquired solely through document traversal, however #1658. If we do
     -- just the doc traversal here, then we lose some symbols which only appear
@@ -122,6 +122,11 @@ mkRefSec si dd (RefProg c l) = section (titleize refmat) [c]
       mkTSymb (ccss (getDocDesc dd) (egetDocDesc dd) cdb) f con
     mkSubRef SI {_usedinfodb = db} TAandA =
       tableOfAbbAndAcronyms $ nub $ map fst $ Map.elems $ termTable db
+
+-- | table of units constructors
+tunit, tunit' :: [TUIntro] -> RefTab
+tunit  t = TUnits' t tOfUnitSIName
+tunit' t = TUnits' t tOfUnitDesc
 
 -- | Helper for creating the table of symbols
 mkTSymb :: (Quantity e, Concept e, Eq e, MayHaveUnit e) =>
@@ -235,11 +240,10 @@ mkIntroSec si (IntroProg probIntro progDefn l) =
   where
     mkSubIntro :: SystemInformation -> IntroSub -> Section
     mkSubIntro _ (IPurpose intro) = Intro.purposeOfDoc intro
-    mkSubIntro SI {_sys = sys} (IScope main intendedPurp) =
-      Intro.scopeOfRequirements main sys intendedPurp
+    mkSubIntro _ (IScope main) = Intro.scopeOfRequirements main
     mkSubIntro SI {_sys = sys} (IChar assumed topic asset) =
       Intro.charIntRdrF sys assumed topic asset (SRS.userChar [] [])
-    mkSubIntro _ (IOrgSec i b s t)  = Intro.orgSec i b s t
+    mkSubIntro _ (IOrgSec i b s t) = Intro.orgSec i b s t
     -- FIXME: s should be "looked up" using "b" once we have all sections being generated
 
 -- | Helper for making the 'Stakeholders' section
@@ -289,16 +293,16 @@ mkSolChSpec si (SCSProg l) =
     mkSubSCS si' (TMs intro fields ts) =
       SSD.thModF (siSys si') $ map mkParagraph intro ++ map (LlC . tmodel fields si') ts
     mkSubSCS si' (DDs intro fields dds ShowDerivation) = --FIXME: need to keep track of DD intro.
-      SSD.dataDefnF EmptyS $ map mkParagraph intro ++ concatMap (\x -> (LlC $ ddefn fields si' x) : derivation x) dds
+      SSD.dataDefnF EmptyS $ map mkParagraph intro ++ concatMap (\x -> [LlC $ ddefn fields si' x, derivation x]) dds
     mkSubSCS si' (DDs intro fields dds _) =
       SSD.dataDefnF EmptyS $ map mkParagraph intro ++ map (LlC . ddefn fields si') dds
     mkSubSCS si' (GDs intro fields gs' ShowDerivation) =
-      SSD.genDefnF $ map mkParagraph intro ++ concatMap (\x -> (LlC $ gdefn fields si' x) : derivation x) gs'
+      SSD.genDefnF $ map mkParagraph intro ++ concatMap (\x -> [LlC $ gdefn fields si' x, derivation x]) gs'
     mkSubSCS si' (GDs intro fields gs' _) =
       SSD.genDefnF $ map mkParagraph intro ++ map (LlC . gdefn fields si') gs'
     mkSubSCS si' (IMs intro fields ims ShowDerivation) =
       SSD.inModelF pdStub ddStub tmStub (SRS.genDefn [] []) $ map mkParagraph intro ++
-      concatMap (\x -> LlC (instanceModel fields si' x) : derivation x) ims
+      concatMap (\x -> [LlC $ instanceModel fields si' x, derivation x]) ims
     mkSubSCS si' (IMs intro fields ims _) =
       SSD.inModelF pdStub ddStub tmStub (SRS.genDefn [] []) $ map mkParagraph intro ++
       map (LlC . instanceModel fields si') ims

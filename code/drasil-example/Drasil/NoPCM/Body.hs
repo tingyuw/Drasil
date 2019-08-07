@@ -1,33 +1,29 @@
 module Drasil.NoPCM.Body where
 
-import Language.Drasil hiding (section, sec)
+import Language.Drasil hiding (Symbol(..), section)
 import Language.Drasil.Printers (PrintingInformation(..), defaultConfiguration)
 import Database.Drasil (Block(Parallel), ChunkDB, ReferenceDB,
   SystemInformation(SI), cdb, rdb, refdb, _authors, _concepts, _constants,
   _constraints, _datadefs, _definitions, _defSequence, _inputs, _kind, _outputs,
   _quants, _sys, _sysinfodb, _usedinfodb)
-import Theory.Drasil (DataDefinition, TheoryModel)
+import Theory.Drasil (TheoryModel)
 import Utils.Drasil
 
 import Data.List ((\\))
 import Data.Drasil.People (thulasi)
 
 import Data.Drasil.Concepts.Computation (algorithm)
-import Data.Drasil.Concepts.Documentation as Doc (assumption, content,
-  definition, doccon, doccon', document, goal, information, material_, model,
-  problem, property, purpose, reference, srsDomains)
+import Data.Drasil.Concepts.Documentation as Doc (doccon, doccon', material_, srsDomains)
 import qualified Data.Drasil.Concepts.Documentation as Doc (srs)
-import Data.Drasil.IdeaDicts as Doc (inModel, thModel)
+import Data.Drasil.IdeaDicts as Doc (inModel)
 import Data.Drasil.Concepts.Education (educon)
-import Data.Drasil.Concepts.Math (mathcon, mathcon')
+import Data.Drasil.Concepts.Math (mathcon, mathcon', ode)
 import Data.Drasil.Concepts.PhysicalProperties (materialProprty, physicalcon)
 import Data.Drasil.Concepts.Physics (physicCon, physicCon')
-import Data.Drasil.Concepts.Software (program, softwarecon)
-import Data.Drasil.Concepts.Thermodynamics (enerSrc, thermalAnalysis, temp,
-  thermalEnergy, htTransTheo, htFlux, heatCapSpec, thermalConduction, thermocon,
-  phaseChange)
+import Data.Drasil.Concepts.Software (softwarecon)
+import Data.Drasil.Concepts.Thermodynamics (heatCapSpec, htFlux, phaseChange,
+  temp, thermalAnalysis, thermalConduction, thermocon)
 
-import qualified Data.Drasil.Concepts.Math as M (ode, de)
 import qualified Data.Drasil.Quantities.Thermodynamics as QT (temp,
   heatCapSpec, htFlux, sensHeat)
 
@@ -40,26 +36,23 @@ import Data.Drasil.SI_Units (metre, kilogram, second, centigrade, joule, watt,
   fundamentals, derived)
 
 import qualified Drasil.DocLang.SRS as SRS (inModel)
-import Drasil.DocLang (SRSDecl, Fields, Field(..), Verbosity(Verbose), 
-  InclUnits(IncludeUnits), SCSSub(..), DerivationDisplay(..), SSDSub(..),
-  SolChSpec(..), SSDSec(..), DocSection(..), GSDSec(..), GSDSub(..),
-  AuxConstntSec(AuxConsProg), IntroSec(IntroProg),
-  IntroSub(IOrgSec, IScope, IChar, IPurpose), Literature(Lit, Doc'),
-  ReqrmntSec(..), ReqsSub(..), RefSec(RefProg), RefTab(TAandA, TUnits),
-  TraceabilitySec(TraceabilityProg), TSIntro(SymbOrder, SymbConvention, TSPurpose),
-  ProblemDescription(PDProg), PDSub(..), intro, mkDoc, tsymb, traceMatStandard)
+import Drasil.DocLang (AuxConstntSec(AuxConsProg), DerivationDisplay(..),
+  DocSection(..), Field(..), Fields, GSDSec(..), GSDSub(..), InclUnits(IncludeUnits),
+  IntroSec(IntroProg), IntroSub(IOrgSec, IScope, IChar, IPurpose), Literature(Lit, Doc'),
+  PDSub(..), ProblemDescription(PDProg), RefSec(RefProg), RefTab(TAandA, TUnits),
+  ReqrmntSec(..), ReqsSub(..), SCSSub(..), SolChSpec(..), SRSDecl, SSDSec(..),
+  SSDSub(..), TraceabilitySec(TraceabilityProg), Verbosity(Verbose), 
+  TSIntro(SymbOrder, SymbConvention, TSPurpose, VectorUnits), intro, mkDoc,
+  tsymb, traceMatStandard)
 
 -- Since NoPCM is a simplified version of SWHS, the file is to be built off
 -- of the SWHS libraries.  If the source for something cannot be found in
 -- NoPCM, check SWHS.
-import Drasil.SWHS.Body (charReader1, charReader2, dataContMid, orgDocIntro,
-  physSyst1, physSyst2, sysCntxtDesc, sysCntxtFig, systContRespBullets,
-  sysCntxtRespIntro, userChars)
+import Drasil.SWHS.Body (charsOfReader, dataContMid, introEnd, introStart,
+  orgDocIntro, physSyst1, physSyst2, purpDoc, sysCntxtDesc, sysCntxtFig,
+  systContRespBullets, sysCntxtRespIntro, userChars)
 import Drasil.SWHS.Changes (likeChgTCVOD, likeChgTCVOL, likeChgTLH)
 import Drasil.SWHS.Concepts (acronyms, coil, progName, sWHT, tank, transient, water, con)
-import Drasil.SWHS.DataDefs (dd1HtFluxC, dd1HtFluxCQD)
-import Drasil.SWHS.References (incroperaEtAl2007, koothoor2013, lightstone2012, 
-  parnasClements1986, smithLai2005)
 import Drasil.SWHS.Requirements (nfRequirements)
 import Drasil.SWHS.TMods (consThermE, sensHtETemplate, PhaseChange(Liquid))
 import Drasil.SWHS.Unitals (coilSAMax, deltaT, eta, htFluxC, htFluxIn, 
@@ -68,26 +61,35 @@ import Drasil.SWHS.Unitals (coilSAMax, deltaT, eta, htFluxC, htFluxIn,
 
 import Drasil.NoPCM.Assumptions
 import Drasil.NoPCM.Changes (likelyChgs, unlikelyChgs)
+import Drasil.NoPCM.DataDefs (qDefs)
+import qualified Drasil.NoPCM.DataDefs as NoPCM (dataDefs)
 import Drasil.NoPCM.Definitions (srsSWHS, htTrans)
 import Drasil.NoPCM.GenDefs (genDefs)
 import Drasil.NoPCM.Goals (goals)
 import Drasil.NoPCM.IMods (eBalanceOnWtr, instModIntro)
 import qualified Drasil.NoPCM.IMods as NoPCM (iMods)
 import Drasil.NoPCM.Requirements (funcReqs, inputInitQuantsTable)
-import Drasil.NoPCM.Unitals (inputs, constrained, specParamValList)
+import Drasil.NoPCM.References (citations)
+import Drasil.NoPCM.Unitals (inputs, constrained, unconstrained, 
+  specParamValList)
 
--- This defines the standard units used throughout the document
-thisSi :: [UnitDefn]
-thisSi = map unitWrapper [metre, kilogram, second] ++ map unitWrapper [centigrade, joule, watt]
+srs :: Document
+srs = mkDoc mkSRS for si
 
--- This contains the list of symbols used throughout the document
-symbols :: [DefinedQuantityDict]
-symbols = pi_ : map dqdWr units ++ map dqdWr constrained
- ++ map dqdWr [tempW, watE]
- ++ [gradient, uNormalVect] ++ map dqdWr [surface]
+printSetting :: PrintingInformation
+printSetting = PI symbMap defaultConfiguration
 
 resourcePath :: String
 resourcePath = "../../../datafiles/NoPCM/"
+
+-- This defines the standard concepts used throughout the document
+units :: [UnitDefn]
+units = map unitWrapper [metre, kilogram, second] ++ map unitWrapper [centigrade, joule, watt]
+-- This contains the list of symbols used throughout the document
+symbols :: [DefinedQuantityDict]
+symbols = pi_ : map dqdWr concepts ++ map dqdWr constrained
+ ++ map dqdWr [tempW, watE]
+ ++ [gradient, uNormalVect] ++ map dqdWr [surface]
   
 symbolsAll :: [QuantityDict] --FIXME: Why is PCM (swhsSymbolsAll) here?
                                --Can't generate without SWHS-specific symbols like pcmHTC and pcmSA
@@ -96,8 +98,8 @@ symbolsAll = map qw symbols ++ map qw specParamValList ++
   map qw [coilSAMax] ++ map qw [tauW] ++ map qw [eta] ++
   map qw [absTol, relTol]
 
-units :: [UnitaryConceptDict]
-units = map ucw [density, tau, inSA, outSA,
+concepts :: [UnitaryConceptDict]
+concepts = map ucw [density, tau, inSA, outSA,
   htCapL, QT.htFlux, htFluxIn, htFluxOut, volHtGen,
   htTransCoeff, mass, tankVol, QT.temp, QT.heatCapSpec,
   deltaT, tempEnv, thFluxVect, time, htFluxC,
@@ -114,15 +116,15 @@ units = map ucw [density, tau, inSA, outSA,
 mkSRS :: SRSDecl
 mkSRS = [RefSec $ RefProg intro
   [TUnits,
-  tsymb [TSPurpose, SymbConvention [Lit $ nw htTrans, Doc' $ nw progName], SymbOrder],
+  tsymb [TSPurpose, SymbConvention [Lit $ nw htTrans, Doc' $ nw progName], SymbOrder, VectorUnits],
   TAandA],
-  IntroSec $ IntroProg (introStart enerSrc energy progName)
-    (introEnd progName program)
-  [IPurpose $ purpDoc progName,
-  IScope (scopeReqStart thermalAnalysis sWHT) (scopeReqEnd temp thermalEnergy
-    water),
-  IChar [] (charReader1 htTransTheo ++ charReader2 M.de) [],
-  IOrgSec orgDocIntro inModel (SRS.inModel [] []) $ orgDocEnd inModel M.ode progName],
+  IntroSec $
+    IntroProg (introStart +:+ introStartNoPCM) (introEnd (plural progName) progName)
+    [ IPurpose $ purpDoc (phrase progName) progName
+    , IScope scope
+    , IChar [] charsOfReader []
+    , IOrgSec orgDocIntro inModel (SRS.inModel [] []) orgDocEnd
+    ],
   GSDSec $ GSDProg2 
     [ SysCntxt [sysCntxtDesc progName, LlC sysCntxtFig, sysCntxtRespIntro progName, systContRespBullets]
     , UsrChars [userChars progName]
@@ -154,9 +156,6 @@ mkSRS = [RefSec $ RefProg intro
   AuxConstntSec $ AuxConsProg progName specParamValList,
   Bibliography]
 
-dataDefn :: [DataDefinition]
-dataDefn = [dd1HtFluxC]
-
 concIns :: [ConceptInstance]
 concIns = goals ++ funcReqs ++ nfRequirements ++ assumptions ++
  [likeChgTCVOD, likeChgTCVOL] ++ likelyChgs ++ [likeChgTLH] ++ unlikelyChgs
@@ -164,8 +163,8 @@ concIns = goals ++ funcReqs ++ nfRequirements ++ assumptions ++
 labCon :: [LabelledContent]
 labCon = [inputInitQuantsTable]
 
-sec :: [Section]
-sec = extractSection srs
+section :: [Section]
+section = extractSection srs
 
 stdFields :: Fields
 stdFields = [DefiningEquation, Description Verbose IncludeUnits, Notes, Source, RefBy]
@@ -178,13 +177,13 @@ si = SI {
   -- FIXME: Everything after (and including) \\ should be removed when
   -- #1658 is resolved. Basically, _quants is used here, but neither tankVol
   -- or tau appear in the document and thus should not be displayed.
-  _quants = map qw symbols \\ map qw [tankVol, tau],
+  _quants = (map qw unconstrained ++ map qw symbols) \\ map qw [tankVol, tau],
   _concepts = symbols,
   _definitions = [],
-  _datadefs = [dd1HtFluxC],
+  _datadefs = NoPCM.dataDefs,
   _inputs = inputs ++ map qw [tempW, watE], --inputs ++ outputs?
   _outputs = map qw [tempW, watE],     --outputs
-  _defSequence = [Parallel dd1HtFluxCQD []],
+  _defSequence = [(\x -> Parallel (head x) (tail x)) qDefs],
   _constraints = map cnstrw constrained ++ map cnstrw [tempW, watE],        --constrained
   _constants = specParamValList,
   _sysinfodb = symbMap,
@@ -193,10 +192,7 @@ si = SI {
 }
 
 refDB :: ReferenceDB
-refDB = rdb referencesRefList concIns
-
-srs :: Document
-srs = mkDoc mkSRS for si
+refDB = rdb citations concIns
 
 symbMap :: ChunkDB
 symbMap = cdb symbolsAll (map nw symbols ++ map nw acronyms ++ map nw thermocon
@@ -205,60 +201,30 @@ symbMap = cdb symbolsAll (map nw symbols ++ map nw acronyms ++ map nw thermocon
   ++ map nw specParamValList ++ map nw fundamentals ++ map nw educon ++ map nw derived 
   ++ map nw physicalcon ++ map nw unitalChuncks ++ [nw srsSWHS, nw algorithm, nw htTrans]
   ++ map nw [absTol, relTol] ++ [nw materialProprty])
-  (map cw symbols ++ srsDomains) thisSi dataDefn NoPCM.iMods genDefs
-  theoreticalModels concIns sec labCon
+  (map cw symbols ++ srsDomains) units NoPCM.dataDefs NoPCM.iMods genDefs
+  theoreticalModels concIns section labCon
 
 usedDB :: ChunkDB
 usedDB = cdb ([] :: [QuantityDict]) (map nw symbols ++ map nw acronyms)
  ([] :: [ConceptChunk]) ([] :: [UnitDefn]) [] [] [] [] [] [] []
 
-printSetting :: PrintingInformation
-printSetting = PI symbMap defaultConfiguration
-
 --------------------------
 --Section 2 : INTRODUCTION
 --------------------------
 
-introStart :: ConceptChunk -> UnitalChunk -> CI-> Sentence
-introStart es en pro = foldlSent [S "Due to increasing cost, diminishing",
-  S "availability, and negative environmental impact of",
-  S "fossil fuels, there is a higher demand for renewable",
-  plural es `sAnd` phrase en +:+. S "storage technology", 
-  atStart' pro, S "provide a novel way of storing", phrase en]
-
-introEnd :: CI -> ConceptChunk -> Sentence
-introEnd pro pr = foldlSent_ [EmptyS +:+. plural pro, S "The developed",
-  phrase pr, S "will be referred to as", titleize pro,
-  sParen (short pro)]
+introStartNoPCM :: Sentence
+introStartNoPCM = atStart' progName +:+ S "provide a novel way of storing" +:+. phrase energy
 
 -----------------------------------
 --Section 2.1 : PURPOSE OF DOCUMENT
 -----------------------------------
 
-purpDoc :: CI -> Sentence
-purpDoc pro = foldlSent [S "The main", phrase purpose, S "of this",
-  phrase document, S "is to describe the modelling of" +:+.
-  phrase pro, S "The", plural Doc.goal `sAnd` plural thModel,
-  S "used in the", short pro, S "code are provided, with an emphasis",
-  S "on explicitly identifying", plural assumption, S "and unambiguous" +:+.
-  plural definition, S "This", phrase document,
-  S "is intended to be used as a", phrase reference,
-  S "to provide ad hoc access to all", phrase information,
-  S "necessary to understand and verify the" +:+. phrase model, S "The",
-  short Doc.srs, S "is abstract because the", plural content, S "say what",
-  phrase problem, S "is being solved, but do not say how to solve it"]
-
 -------------------------------------
 --Section 2.2 : SCOPE OF REQUIREMENTS
 -------------------------------------
 
-scopeReqStart :: ConceptChunk -> ConceptChunk -> Sentence
-scopeReqStart ta sw = foldlSent_ [phrase ta, S "of a single", phrase sw]
-
-scopeReqEnd :: ConceptChunk -> ConceptChunk -> ConceptChunk -> Sentence
-scopeReqEnd tem te wa = foldlSent_ [S "predicts the",
-  phrase tem `sAnd` phrase te,
-  S "histories for the", phrase wa]
+scope :: Sentence
+scope = phrase thermalAnalysis `sOf` S "a single" +:+ phrase sWHT
 
 --------------------------------------------------
 --Section 2.3 : CHARACTERISTICS Of INTENDED READER
@@ -268,12 +234,12 @@ scopeReqEnd tem te wa = foldlSent_ [S "predicts the",
 --Section 2.4: ORGANIZATION OF DOCUMENT
 ---------------------------------------
 
-orgDocEnd :: CI -> CI -> CI -> Sentence
-orgDocEnd im_ od pro = foldlSent_ [S "The", phrase im_,
+orgDocEnd :: Sentence
+orgDocEnd = foldlSent_ [S "The", phrase inModel,
   S "to be solved is referred to as" +:+. makeRef2S eBalanceOnWtr,
-  S "The", phrase im_, S "provides the",
-  titleize od, sParen (short od), S "that model the"
-  +:+. phrase pro, short pro, S "solves this", short od]
+  S "The", phrase inModel, S "provides the", titleize ode,
+  sParen (short ode), S "that models the" +:+. phrase progName,
+  short progName, S "solves this", short ode]
 
 ----------------------------------------
 --Section 3 : GENERAL SYSTEM DESCRIPTION
@@ -325,7 +291,7 @@ physSystParts = map foldlSent_ [physSyst1 tank water, physSyst2 coil tank htFlux
 
 goalInputs :: [Sentence]
 goalInputs = [phrase temp `ofThe` phrase coil,
-  S "the initial" +:+ phrase tempW, S "the material" +:+ plural property]
+  S "the initial" +:+ phrase tempW, S "the" +:+ plural materialProprty]
 
 ------------------------------------------------------
 --Section 4.2 : SOLUTION CHARACTERISTICS SPECIFICATION
@@ -385,6 +351,3 @@ dataConstListOut = [tempW, watE]
 ------------
 --REFERENCES
 ------------
-
-referencesRefList :: BibRef
-referencesRefList = [incroperaEtAl2007, koothoor2013, lightstone2012, parnasClements1986, smithLai2005]

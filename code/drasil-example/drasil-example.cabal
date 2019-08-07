@@ -5,11 +5,11 @@ Author:		Dan Szymczak, Steven Palmer, Jacques Carette, Spencer Smith
 build-type:     Simple
 Synopsis:	A framework for code and document generation for scientific software - Example SubPackage
 
-executable tiny
+executable hghc
   hs-source-dirs: .
   main-is: Drasil/HGHC/Main.hs
   other-modules:
-      Drasil.HGHC.HGHC
+      Drasil.HGHC.Body
     , Drasil.HGHC.HeatTransfer
   Build-Depends:
     base >= 4.7,
@@ -78,11 +78,13 @@ executable nopcm
     , Drasil.NoPCM.Body
     , Drasil.NoPCM.Changes
     , Drasil.NoPCM.Unitals
+    , Drasil.NoPCM.DataDefs
     , Drasil.NoPCM.Definitions
     , Drasil.NoPCM.IMods
     , Drasil.NoPCM.GenDefs
     , Drasil.NoPCM.Goals
     , Drasil.NoPCM.Requirements
+    , Drasil.NoPCM.References
     , Drasil.SWHS.Assumptions
     , Drasil.SWHS.Body
     , Drasil.SWHS.Changes
@@ -190,7 +192,7 @@ executable ssp
   default-language: Haskell2010
   ghc-options:      -Wall -Wredundant-constraints
 
-executable chipmunkdocs
+executable gamephysics
   hs-source-dirs: .
   main-is: Drasil/GamePhysics/Main.hs
   other-modules:

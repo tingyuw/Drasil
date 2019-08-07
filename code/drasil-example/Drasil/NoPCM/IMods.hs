@@ -12,8 +12,9 @@ import Data.Drasil.Concepts.Thermodynamics (melting, boilPt)
 import Data.Drasil.Quantities.Physics (energy, time)
 
 import Drasil.SWHS.Concepts (water)
-import Drasil.SWHS.DataDefs (dd1HtFluxC)
-import Drasil.SWHS.IMods (eBalanceOnWtrDerivDesc1, heatEInWtr)
+import Drasil.SWHS.DataDefs (ddHtFluxC, balanceDecayRate)
+import Drasil.SWHS.IMods (eBalanceOnWtrDerivDesc1, eBalanceOnWtrDerivDesc3,
+ heatEInWtr)
 import Drasil.SWHS.References (koothoor2013)
 import Drasil.SWHS.Unitals (tempW, tempC, tauW, wMass, htCapW, coilHTC, 
   coilSA, tempInit, timeFinal, htFluxC)
@@ -34,7 +35,7 @@ eBalanceOnWtr = im eBalanceOnWtrRC [qw tempC, qw tempInit, qw timeFinal,
   [sy tempInit $<= sy tempC] (qw tempW) 
   --Tw(0) cannot be presented, there is one more constraint Tw(0) = Tinit
   [0 $< sy time $< sy timeFinal] [makeCiteInfo koothoor2013 $ RefNote "with PCM removed"] 
-  eBalanceOnWtrDeriv "eBalanceOnWtr" [balWtrDesc]
+  (Just eBalanceOnWtrDeriv) "eBalanceOnWtr" [balWtrDesc]
 
 eBalanceOnWtrRC :: RelationConcept
 eBalanceOnWtrRC = makeRC "eBalanceOnWtrRC" (nounPhraseSP $ "Energy balance on " ++
@@ -49,8 +50,7 @@ balWtrDesc :: Sentence
 balWtrDesc = foldlSent [(E $ sy tempW) `isThe` phrase tempW +:+.
   sParen (unwrap $ getUnit tempW), 
   (E $ sy tempC) `isThe` phrase tempC +:+. sParen (unwrap $ getUnit tempC),
-  E $ sy tauW $= (sy wMass * sy htCapW) / (sy coilHTC * sy coilSA),
-  S "is a constant" +:+. sParen (unwrap $ getUnit tauW),
+  ch tauW, S "is from" +:+. makeRef2S balanceDecayRate,
   S "The above", phrase equation, S "applies as long as the", phrase water,
   S "is in", phrase liquid, S "form" `sC` (E $ 0 $< sy tempW $< 100),
   sParen (unwrap $ getUnit tempW), S "where", E 0,
@@ -63,33 +63,21 @@ balWtrDesc = foldlSent [(E $ sy tempW) `isThe` phrase tempW +:+.
 --    Derivation of eBalanceOnWtr           --
 ----------------------------------------------
 eBalanceOnWtrDeriv :: Derivation
-eBalanceOnWtrDeriv =
-  S "Derivation of the" +:+ phrase energy +:+ S "balance on water:" :
-  weave [eBalanceOnWtrDerivSentences, map E eBalanceOnWtrDerivEqns]
+eBalanceOnWtrDeriv = mkDerivName (S "the" +:+ phrase energy +:+ S "balance on water")
+  (weave [eBalanceOnWtrDerivSentences, map E eBalanceOnWtrDerivEqns])
 
 eBalanceOnWtrDerivSentences :: [Sentence]
 eBalanceOnWtrDerivSentences = map foldlSentCol [
   eBalanceOnWtrDerivDesc1 EmptyS (S "over area" +:+ (E $ sy coilSA)) EmptyS assumpNIHGBW,
-  eBalanceOnWtrDerivDesc2 dd1HtFluxC,
-  eBalanceOnWtrDerivDesc3 eq1,
-  eBalanceOnWtrDerivDesc4 eq2]
+  eBalanceOnWtrDerivDesc2 ddHtFluxC,
+  eBalanceOnWtrDerivDesc3, eBalanceOnWtrDerivDesc4]
 
 eBalanceOnWtrDerivDesc2 :: DataDefinition -> [Sentence]
-eBalanceOnWtrDerivDesc2 dd =
-  [S "Using", makeRef2S dd, S ", this can be written as"]
+eBalanceOnWtrDerivDesc2 dd = [S "Using", makeRef2S dd, S "for", ch dd `sC`
+  S "this can be written as"]
 
-eBalanceOnWtrDerivDesc3 :: Expr-> [Sentence]
-eBalanceOnWtrDerivDesc3 eq = [S "Dividing (3) by", E eq `sC` S "we obtain"]
-
-eBalanceOnWtrDerivDesc4 :: [Sentence]-> [Sentence]
-eBalanceOnWtrDerivDesc4 eq = 
-  [S "Setting"] ++ eq ++ [S ", Equation (4) can be written in its final form as"]
-
-eq1:: Expr
-eq1 = sy wMass * sy htCapW
-
-eq2:: [Sentence]
-eq2 = [ch tauW, S "=", ch wMass, ch htCapW, S "/", ch coilHTC, ch coilSA]
+eBalanceOnWtrDerivDesc4 :: [Sentence]
+eBalanceOnWtrDerivDesc4 = [substitute [balanceDecayRate]]
 
 eBalanceOnWtrDerivEqn1, eBalanceOnWtrDerivEqn2, eBalanceOnWtrDerivEqn3, eBalanceOnWtrDerivEqn4 :: Expr
 
@@ -117,3 +105,4 @@ instModIntro :: Sentence
 instModIntro = foldlSent [S "The", phrase goal, makeRef2S waterTempGS,
   S "is met by", makeRef2S eBalanceOnWtr `andThe` phrase goal,
   makeRef2S waterEnergyGS, S "is met by", makeRef2S heatEInWtr]
+  
