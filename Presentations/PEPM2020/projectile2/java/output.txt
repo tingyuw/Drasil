@@ -1,0 +1,2 @@
+s = The target was hit.
+d_offset = -0.18367346938993023

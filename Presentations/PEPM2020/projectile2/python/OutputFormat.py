@@ -1,0 +1,17 @@
+def write_output(s, d_offset):
+    outfile = open("log.txt", "a")
+    print("function write_output called with inputs: {", file=outfile)
+    print("  s = ", end='', file=outfile)
+    print(s, end='', file=outfile)
+    print(", ", file=outfile)
+    print("  d_offset = ", end='', file=outfile)
+    print(d_offset, file=outfile)
+    print("  }", file=outfile)
+    outfile.close()
+    
+    outputfile = open("output.txt", "w")
+    print("s = ", end='', file=outputfile)
+    print(s, file=outputfile)
+    print("d_offset = ", end='', file=outputfile)
+    print(d_offset, file=outputfile)
+    outputfile.close()
