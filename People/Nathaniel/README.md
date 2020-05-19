@@ -52,13 +52,13 @@ Last Updated: May 19th, 2020
  - manually generated draft (.dot file) for traceability graph sample 2
 
 **sampleTG2.png**
- - output (.png file) for sampleTG2.dot
+ - output (.png file) for sampleTG2.dot (contains labelled subgraph clusters)
 
 **sampleTG3.dot**
  - manually generated draft (.dot file) for traceability graph sample 3
 
 **sampleTG3.png**
- - output (.png file) for sampleTG3.dot
+ - output (.png file) for sampleTG3.dot (contains unlabelled subgraph clusters)
 
 -------------------------------------
 Note: To generate a tracebaility graph manually (.dot -> .png), go to the terminal (mac)/ command (windows) and run the command "dot -Tpng \<filename\>.dot -o \<filename\>.png" (mac also requires the line "man dot" also be run beforehand)
