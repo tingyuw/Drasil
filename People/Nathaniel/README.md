@@ -60,4 +60,5 @@ Last Updated: May 14th, 2020
 **sampleTG3.png**
  - output (.png file) for sampleTG3.dot
 
+-------------------------------------
 Note: To generate a tracebaility graph manually (.dot -> .png), go to the terminal (mac)/ command (windows) and run the command "dot -Tpng \<filename\>.dot -o \<filename\>.png" (mac also requires the line "man dot" also be run beforehand)
