@@ -43,9 +43,21 @@ Last Updated: May 14th, 2020
  - contains short names for data components
  
  **TraceMatAvsAll_Graph.dot**
- - manually generated draft (.dot file) for traceability graph
+ - manually generated draft (.dot file) for traceability graph sample 1
  
  **TraceMatAvsAll_Graph.png**
  - output (.png file) for TraceMatAvsAll_Graph.dot
+
+**sampleTG2.dot**
+ - manually generated draft (.dot file) for traceability graph sample 2
+
+**sampleTG2.png**
+ - output (.png file) for sampleTG2.dot
+
+**sampleTG3.dot**
+ - manually generated draft (.dot file) for traceability graph sample 3
+
+**sampleTG3.png**
+ - output (.png file) for sampleTG3.dot
 
 Note: To generate a tracebaility graph manually (.dot -> .png), go to the terminal (mac)/ command (windows) and run the command "dot -Tpng \<filename\>.dot -o \<filename\>.png" (mac also requires the line "man dot" also be run beforehand)
