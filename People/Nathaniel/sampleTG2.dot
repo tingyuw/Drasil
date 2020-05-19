@@ -1,0 +1,210 @@
+digraph sampleTG2 {
+	rankdir="TB";
+	newrank="true";
+
+	/*| Data Component Relationships/Dependencies |*/
+	IM1 -> {IM1, AS3, AS4, AS9, AS11, AS12, AS14, AS15, AS16, AS19, DD1, DD2, GD1, 
+		GD2, GD3};
+	IM2 -> {IM1, IM4, AS3, AS4, AS12, AS13, AS16, AS17, AS18, DD3, DD4, DD6, GD1, 
+		GD3};
+	IM3 -> {TM2, AS14, AS19};
+	IM4 -> {TM2, TM3, AS13, AS18, DD5};
+
+	FR1 -> {FR4};
+	FR2 -> {IM1, IM2, IM3, IM4, FR1, FR4, AS20};
+	FR3 -> {}
+	FR4 -> {DD1, DD2, DD3, DD4};
+	FR5 -> {IM1};
+	FR6 -> {IM2};
+	FR7 -> {IM3};
+	FR8 -> {IM4};
+	FR9 -> {};
+	FR10 -> {IM2};
+	FR11 -> {IM2};
+
+	TM1 -> {AS1};
+	TM2 -> {TM3};
+	TM3 -> {DD6};
+	TM4 -> {AS2};
+
+	GD1 -> {TM1, AS3, AS4, AS5, AS6, GD1};
+	GD2 -> {TM4, AS7, AS8};
+	GD3 -> {TM4, AS10};
+
+	DD1 -> {};
+	DD2 -> {};
+	DD3 -> {};
+	DD4 -> {};
+	DD5 -> {};
+	DD6 -> {DD5};
+	DD7 -> {};
+
+	AS1 -> {};
+	AS2 -> {};
+	AS3 -> {};
+	AS4 -> {};
+	AS5 -> {};
+	AS6 -> {};
+	AS7 -> {};
+	AS8 -> {};
+	AS9 -> {};
+	AS10 -> {};
+	AS11 -> {AS12};
+	AS12 -> {};
+	AS13 -> {};
+	AS14 -> {};
+	AS15 -> {};
+	AS16 -> {IM1, IM2};
+	AS17 -> {};
+	AS18 -> {IM2, IM4};
+	AS19 -> {};
+	AS20 -> {};
+
+	LC1 -> {AS4};
+	LC2 -> {AS8};
+	LC3 -> {AS9};
+	LC4 -> {AS11};
+	LC5 -> {AS12};
+	LC6 -> {AS15};
+
+	UC1 -> {AS14, AS18};
+	UC2 -> {IM1, IM2, AS16};
+	UC3 -> {IM2, IM4, AS18};
+
+	/*| Instance Models |*/
+	IM1	[color=black, fillcolor=khaki1, label="IM: eBalanceOnWtr", shape=box, style=filled];
+	IM2	[color=black, fillcolor=khaki1, label="IM: eBalanceOnPCM", shape=box, style=filled];
+	IM3 [color=black, fillcolor=khaki1, label="IM: heatEInWtr", shape=box, style=filled];
+	IM4 [color=black, fillcolor=khaki1, label="IM: heatEInPCM", shape=box, style=filled];
+
+	/*| Functional Requirements |*/
+	FR1 [color=black, fillcolor=gainsboro, label="FR: inputQuantities", shape=box, style=filled];
+	FR2 [color=black, fillcolor=gainsboro, label="FR: findMass", shape=box, style=filled];
+	FR3 [color=black, fillcolor=gainsboro, label="FR: checkWithPhysConsts", shape=box, style=filled];
+	FR4	[color=black, fillcolor=gainsboro, label="FR: outputInputDerivVals", shape=box, style=filled];
+	FR5 [color=black, fillcolor=gainsboro, label="FR: calcTempWtrOverTime", shape=box, style=filled];
+	FR6 [color=black, fillcolor=gainsboro, label="FR: calcTempPCMOverTime", shape=box, style=filled];
+	FR7 [color=black, fillcolor=gainsboro, label="FR: calcChgHeatEnergyWtrOverTime", shape=box, style=filled];
+	FR8 [color=black, fillcolor=gainsboro, label="FR: calcChgHeatEnergyPCMOverTime", shape=box, style=filled];
+	FR9 [color=black, fillcolor=gainsboro, label="FR: verifyEnergyOutput", shape=box, style=filled];
+	FR10 [color=black, fillcolor=gainsboro, label="FR: calcPCMMeltBegin", shape=box, style=filled];
+	FR11 [color=black, fillcolor=gainsboro, label="FR: calcPCMMeltEnd", shape=box, style=filled];
+
+	/*| Theory Models |*/
+	TM1 [color=black, fillcolor=green3, label="TM: consThermE", shape=box, style=filled];
+	TM2 [color=black, fillcolor=green3, label="TM: senseHtE", shape=box, style=filled];
+	TM3 [color=black, fillcolor=green3, label="TM: latentHtE", shape=box, style=filled];
+	TM4 [color=black, fillcolor=green3, label="TM: nwtnCooling", shape=box, style=filled];
+
+	/*| General Definitions |*/
+	GD1 [color=black, fillcolor=lightskyblue, label="GD: rocTempSimp", shape=box, style=filled];
+	GD2 [color=black, fillcolor=lightskyblue, label="GD: htFluxWaterFromCoil", shape=box, style=filled];
+	GD3 [color=black, fillcolor=lightskyblue, label="GD: htFluxPCMFromWater", shape=box, style=filled];
+
+	/*| Data Definitions |*/
+	DD1 [color=black, fillcolor=paleturquoise1, label="DD: balanceDecayRate", shape=box, style=filled];
+	DD2 [color=black, fillcolor=paleturquoise1, label="DD: balanceDecayTime", shape=box, style=filled];
+	DD3 [color=black, fillcolor=paleturquoise1, label="DD: balanceSolidPCM", shape=box, style=filled];
+	DD4 [color=black, fillcolor=paleturquoise1, label="DD: balanceLiquidPCM", shape=box, style=filled];
+	DD5 [color=black, fillcolor=paleturquoise1, label="DD: htFusion", shape=box, style=filled];
+	DD6 [color=black, fillcolor=paleturquoise1, label="DD: meltFrac", shape=box, style=filled];
+	DD7 [color=black, fillcolor=paleturquoise1, label="DD: aspectRatio", shape=box, style=filled];
+
+	/*| Assumptions |*/
+	AS1 [color=black, fillcolor=brown1, label="A: thermEOnly", shape=box, style=filled];
+	AS2 [color=black, fillcolor=brown1, label="A: heatTransCoeffsConst", shape=box, style=filled];
+	AS3 [color=black, fillcolor=brown1, label="A: constWtrTempAcrossTank", shape=box, style=filled];
+	AS4 [color=black, fillcolor=brown1, label="A: tempPCMConstAcrossVol", shape=box, style=filled];
+	AS5 [color=black, fillcolor=brown1, label="A: densityWtrPCMConstOverVol", shape=box, style=filled];
+	AS6 [color=black, fillcolor=brown1, label="A: specHeatEConstOverVol", shape=box, style=filled];
+	AS7 [color=black, fillcolor=brown1, label="A: nwtnLawConvCoolCoilWtr", shape=box, style=filled];
+	AS8 [color=black, fillcolor=brown1, label="A: tempHeatCoilConstOverTime", shape=box, style=filled];
+	AS9 [color=black, fillcolor=brown1, label="A: tempHeatCoilConstOverLength", shape=box, style=filled];
+	AS10 [color=black, fillcolor=brown1, label="A: lawConvCoolWtrPCM", shape=box, style=filled];
+	AS11 [color=black, fillcolor=brown1, label="A: chrgingTankNoTempDischrg", shape=box, style=filled];
+	AS12 [color=black, fillcolor=brown1, label="A: sameInitialTempWtrPCM", shape=box, style=filled];
+	AS13 [color=black, fillcolor=brown1, label="A: PCMInitiallySolid", shape=box, style=filled];
+	AS14 [color=black, fillcolor=brown1, label="A: wtrAlwaysLiquid", shape=box, style=filled];
+	AS15 [color=black, fillcolor=brown1, label="A: perfectInsulationTank", shape=box, style=filled];
+	AS16 [color=black, fillcolor=brown1, label="A: noInternalHeatGenByWtrPCM", shape=box, style=filled];
+	AS17 [color=black, fillcolor=brown1, label="A: volChgMeltingPCMNegligible", shape=box, style=filled];
+	AS18 [color=black, fillcolor=brown1, label="A: noGaseousStatePCM", shape=box, style=filled];
+	AS19 [color=black, fillcolor=brown1, label="A: atmosPressureTank", shape=box, style=filled];
+	AS20 [color=black, fillcolor=brown1, label="A: volCoilNegligible", shape=box, style=filled];
+
+	/*| Likely Changes |*/
+	LC1 [color=black, fillcolor=burlywood3, label="LC: uniformTempPCM", shape=box, style=filled];
+	LC2 [color=black, fillcolor=burlywood3, label="LC: tempCoilVarOverDay", shape=box, style=filled];
+	LC3 [color=black, fillcolor=burlywood3, label="LC: tempCoilVarOverLength", shape=box, style=filled];
+	LC4 [color=black, fillcolor=burlywood3, label="LC: dischrgingTank", shape=box, style=filled];
+	LC5 [color=black, fillcolor=burlywood3, label="LC: diffInitialTempsPCMWater", shape=box, style=filled];
+	LC6 [color=black, fillcolor=burlywood3, label="LC: tankLoseHeat", shape=box, style=filled];
+
+	/*| Unlikely Changes |*/
+	UC1 [color=black, fillcolor=aquamarine2, label="UC: wtrPCMFixedStates", shape=box, style=filled];
+	UC2 [color=black, fillcolor=aquamarine2, label="UC: noInternalHeatGen", shape=box, style=filled];
+	UC3 [color=black, fillcolor=aquamarine2, label="UC: noGaseousState", shape=box, style=filled];
+
+	/*| Instance Models Subgraph Cluster |*/
+	subgraph cluster_iMods {
+		label="Instance Models"
+		rank="same"
+		{IM1, IM2, IM3, IM4}
+	}
+
+	/*| Functional Requirements Subgraph Cluster |*/
+	subgraph cluster_funcReqs {
+		label="Functional Requirements"
+		rank="same"
+		{FR1, FR2, FR3, FR4, FR5, FR6, FR7, FR8, FR9, FR10, FR11}
+	}
+
+	/*| Theory Models Subgraph Cluster |*/
+	subgraph cluster_tMods {
+		label="Theory Models"
+		rank="same"
+		{TM1, TM2, TM3, TM4}
+	}
+
+	/*| General Definitions Subgraph Cluster |*/
+	subgraph cluster_genDefs {
+		label="General Definitions"
+		rank="same"
+		{GD1, GD2, GD3}
+	}
+
+	/*| Data Definitions Subgraph Cluster |*/
+	subgraph cluster_dataDefs {
+		label="Data Definitions"
+		rank="same"
+		{DD1, DD2, DD3, DD4, DD5, DD6, DD7}
+	}
+
+	/*| Assumptions Subgraph Cluster |*/
+	subgraph cluster_assumps {
+		label="Assumptions"
+		rank="same"
+		{AS1, AS2, AS3, AS4, AS5, AS6, AS7, AS8, AS9, AS10, AS11, AS12, AS13, AS14, 
+			AS15, AS16, AS17, AS18, AS19, AS20}
+	}
+
+	/*| Likely Changes Subgraph Cluster |*/
+	subgraph cluster_likeChgs {
+		label="Likely Changes"
+		rank="same"
+		{LC1, LC2, LC3, LC4, LC5, LC6}
+	}
+
+	/*| Unlikely Changes Subgraph Cluster |*/
+	subgraph cluster_unlikeChgs {
+		label="Unlikely Changes"
+		rank="same"
+		{UC1, UC2, UC3}
+	}
+
+	{rank="same"; {TM1, TM2, TM3, TM4}; {GD1, GD2, GD3}; {IM1, IM2, IM3, IM4}}
+	{rank="same"; DD1; DD2; DD3; DD4; DD5; DD6; DD7; 
+		LC1; LC2; LC3; LC4; LC5; LC6; UC1; UC2; UC3}
+}
+
+/*| dot -Tpng sampleTG2.dot -o sampleTG2.png |*/
