@@ -375,12 +375,12 @@
                 <div class="list">
                   <p>
                     <div id="staticDeterminate">
-                      staticDeterminate: The  structure is statically determinate. (RefBy: <a href=#unlikeChgStatD>UC: Statically-Determinate</a>.)
+                      staticDeterminate: The  structure is statically determinate. (RefBy: <a href=#unlikeChgStatD>UC: Statically-Determinate</a> and <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>.)
                     </div>
                   </p>
                   <p>
                     <div id="pinConnected">
-                      pinConnected: All joints are connected by frictionless pins. (RefBy: <a href=#likeChgNCbP>LC: Not-Connected-by-Pin</a>.)
+                      pinConnected: All joints are connected by frictionless pins. (RefBy: <a href=#IM:reactionAy>IM: reactionAy</a>, <a href=#IM:reactionAx>IM: reactionAx</a>, and <a href=#likeChgNCbP>LC: Not-Connected-by-Pin</a>.)
                     </div>
                   </p>
                   <p>
@@ -429,7 +429,9 @@
                     </tr>
                     <tr>
                       <th>Equation</th>
-                      <td>\[{\mathbf{F}_{\text{x}}}=0\]</td>
+                      <td>
+                        \[\displaystyle\sum{{\mathbf{F}_{\text{x}}}={\mathbf{F}_{\text{y}}}={\mathbf{M}_{\text{i}}}=0}\]
+                      </td>
                     </tr>
                     <tr>
                       <th>Description</th>
@@ -438,7 +440,21 @@
                           <li>
                             <em><b>F</b><sub>x</sub></em> is the force component in the x direction (<em>N</em>)
                           </li>
+                          <li>
+                            <em><b>F</b><sub>y</sub></em> is the force component in the y direction (<em>N</em>)
+                          </li>
+                          <li>
+                            <em><b>M</b><sub>i</sub></em> is the moment component of joint i (<em>Nm</em>)
+                          </li>
                         </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Notes</th>
+                      <td>
+                        <p class="paragraph">
+                          The structure is assumed to be statically determinate (from <a href=#staticDeterminate>A: staticDeterminate</a>).
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -451,7 +467,11 @@
                     </tr>
                     <tr>
                       <th>RefBy</th>
-                      <td><p class="paragraph"></p></td>
+                      <td>
+                        <p class="paragraph">
+                          <a href=#IM:reactionBy>IM: reactionBy</a>, <a href=#IM:reactionAy>IM: reactionAy</a>, <a href=#IM:reactionAx>IM: reactionAx</a>, <a href=#IM:internalCD>IM: internalCD</a>, <a href=#IM:internalBD>IM: internalBD</a>, <a href=#IM:internalBC>IM: internalBC</a>, <a href=#IM:internalAD>IM: internalAD</a>, and <a href=#IM:internalAC>IM: internalAC</a>
+                        </p>
+                      </td>
                     </tr>
                   </table>
                 </div>
@@ -511,7 +531,7 @@
                       <th>Notes</th>
                       <td>
                         <p class="paragraph">
-                          Because joint A is pinned, there is a reacting force in the x direction, <em><b>F</b><sub>Ax</sub></em>. We apply the static equilibrium to slove the reaction force.
+                          There is a reacting force in the x direction, <em><b>F</b><sub>Ax</sub></em> , since joint A is pinned (from <a href=#pinConnected>A: pinConnected</a>). We apply the static equilibrium to slove the reaction force (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
                         </p>
                       </td>
                     </tr>
@@ -596,6 +616,9 @@
                       <th>Notes</th>
                       <td>
                         <p class="paragraph">
+                          There is a reacting force in the y direction, <em><b>F</b><sub>Ay</sub></em> , since joint A is pinned (from <a href=#pinConnected>A: pinConnected</a>). We apply the static equilibrium to slove the reaction force (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
                           <em>x<sub>1</sub></em> and <em>x<sub>2</sub></em> are shown in <a href=#Figure:physSysImage>Fig:physSysImage</a>..
                         </p>
                       </td>
@@ -608,7 +631,7 @@
                       <th>RefBy</th>
                       <td>
                         <p class="paragraph">
-                          <a href=#calcValues>FR: Calculate-Values</a>
+                          <a href=#IM:internalAC>IM: internalAC</a> and <a href=#calcValues>FR: Calculate-Values</a>
                         </p>
                       </td>
                     </tr>
@@ -681,6 +704,9 @@
                       <th>Notes</th>
                       <td>
                         <p class="paragraph">
+                          We apply the static equilibrium to slove the reaction force (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
                           <em>x<sub>1</sub></em> and <em>x<sub>2</sub></em> are shown in <a href=#Figure:physSysImage>Fig:physSysImage</a>..
                         </p>
                       </td>
@@ -693,7 +719,7 @@
                       <th>RefBy</th>
                       <td>
                         <p class="paragraph">
-                          <a href=#calcValues>FR: Calculate-Values</a>
+                          <a href=#IM:internalBC>IM: internalBC</a> and <a href=#calcValues>FR: Calculate-Values</a>
                         </p>
                       </td>
                     </tr>
@@ -760,6 +786,12 @@
                       <th>Notes</th>
                       <td>
                         <p class="paragraph">
+                          <em>&sum;<b>F</b><sub>y</sub> = <b>F</b><sub>Ay</sub>&plus;<b>F</b><sub>AC</sub>&#8239;sin(θ<sub>1</sub>) = 0</em> (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
+                          <em><b>F</b><sub>Ay</sub></em> is from <a href=#IM:reactionAy>IM: reactionAy</a>..
+                        </p>
+                        <p class="paragraph">
                           Truss structure is show in <a href=#Figure:physSysImage>Fig:physSysImage</a>.
                         </p>
                       </td>
@@ -772,7 +804,7 @@
                       <th>RefBy</th>
                       <td>
                         <p class="paragraph">
-                          <a href=#outputValues>FR: Output-Values</a>
+                          <a href=#outputValues>FR: Output-Values</a> and <a href=#IM:internalAD>IM: internalAD</a>
                         </p>
                       </td>
                     </tr>
@@ -838,6 +870,12 @@
                     <tr>
                       <th>Notes</th>
                       <td>
+                        <p class="paragraph">
+                          <em>&sum;<b>F</b><sub>x</sub> = <b>F</b><sub>AD</sub>&plus;<b>F</b><sub>AC</sub>&#8239;cos(θ<sub>1</sub>) = 0</em> (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
+                          <em><b>F</b><sub>AC</sub></em> is from <a href=#IM:internalAC>IM: internalAC</a>..
+                        </p>
                         <p class="paragraph">
                           Truss structure is show in <a href=#Figure:physSysImage>Fig:physSysImage</a>.
                         </p>
@@ -918,6 +956,12 @@
                       <th>Notes</th>
                       <td>
                         <p class="paragraph">
+                          <em>&sum;<b>F</b><sub>y</sub> = <b>F</b><sub>By</sub>&plus;<b>F</b><sub>BC</sub>&#8239;sin(θ<sub>2</sub>) = 0</em> (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
+                          <em><b>F</b><sub>By</sub></em> is from <a href=#IM:reactionBy>IM: reactionBy</a>..
+                        </p>
+                        <p class="paragraph">
                           Truss structure is show in <a href=#Figure:physSysImage>Fig:physSysImage</a>.
                         </p>
                       </td>
@@ -930,7 +974,7 @@
                       <th>RefBy</th>
                       <td>
                         <p class="paragraph">
-                          <a href=#outputValues>FR: Output-Values</a>
+                          <a href=#outputValues>FR: Output-Values</a> and <a href=#IM:internalBD>IM: internalBD</a>
                         </p>
                       </td>
                     </tr>
@@ -996,6 +1040,12 @@
                     <tr>
                       <th>Notes</th>
                       <td>
+                        <p class="paragraph">
+                          <em>&sum;<b>F</b><sub>x</sub> = <b>F</b><sub>BD</sub>&plus;<b>F</b><sub>BC</sub>&#8239;cos(θ<sub>2</sub>) = 0</em> (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
+                        <p class="paragraph">
+                          <em><b>F</b><sub>BC</sub></em> is from <a href=#IM:internalBC>IM: internalBC</a>..
+                        </p>
                         <p class="paragraph">
                           Truss structure is show in <a href=#Figure:physSysImage>Fig:physSysImage</a>.
                         </p>
@@ -1066,6 +1116,9 @@
                     <tr>
                       <th>Notes</th>
                       <td>
+                        <p class="paragraph">
+                          <em>&sum;<b>F</b><sub>y</sub> = <b>F</b><sub>CD</sub>&minus;<b>F</b><sub>1</sub> = 0</em> (from <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>)..
+                        </p>
                         <p class="paragraph">
                           Truss structure is show in <a href=#Figure:physSysImage>Fig:physSysImage</a>.
                         </p>
@@ -1348,6 +1401,857 @@
             <div id="unlikeChgST">
               Straight-Truss: <a href=#straightTruss>A: straightTruss</a> -  The truss members are straight.
             </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="Sec:TraceMatrices">
+      <div class="section">
+        <h1>Traceability Matrices and Graphs</h1>
+        <p class="paragraph">
+          The purpose of the traceability matrices is to provide easy references on what has to be additionally modified if a certain component is changed. Every time a component is changed, the items in the column of that component that are marked with an "X" should be modified as well. <a href=#Table:TraceMatAvsA>Table:TraceMatAvsA</a> shows the dependencies of assumptions on the assumptions. <a href=#Table:TraceMatAvsAll>Table:TraceMatAvsAll</a> shows the dependencies of data definitions, theoretical models, general definitions, instance models, requirements, likely changes, and unlikely changes on the assumptions. <a href=#Table:TraceMatRefvsRef>Table:TraceMatRefvsRef</a> shows the dependencies of data definitions, theoretical models, general definitions, and instance models with each other. <a href=#Table:TraceMatAllvsR>Table:TraceMatAllvsR</a> shows the dependencies of requirements, goal statements on the data definitions, theoretical models, general definitions, and instance models.
+        </p>
+        <div id="Table:TraceMatAvsA">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th><a href=#staticDeterminate>A: staticDeterminate</a></th>
+              <th><a href=#pinConnected>A: pinConnected</a></th>
+              <th><a href=#connectedatEnd>A: connectedatEnd</a></th>
+              <th><a href=#straightTruss>A: straightTruss</a></th>
+              <th><a href=#igWeight>A: igWeight</a></th>
+              <th><a href=#twokindForce>A: twokindForce</a></th>
+              <th><a href=#applyatJoint>A: applyatJoint</a></th>
+            </tr>
+            <tr>
+              <td><a href=#staticDeterminate>A: staticDeterminate</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#pinConnected>A: pinConnected</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#connectedatEnd>A: connectedatEnd</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#straightTruss>A: straightTruss</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#igWeight>A: igWeight</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#twokindForce>A: twokindForce</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#applyatJoint>A: applyatJoint</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <p class="caption">
+            Traceability Matrix Showing the Connections Between Assumptions dependence of each other.
+          </p>
+        </div>
+        <div id="Table:TraceMatAvsAll">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th><a href=#staticDeterminate>A: staticDeterminate</a></th>
+              <th><a href=#pinConnected>A: pinConnected</a></th>
+              <th><a href=#connectedatEnd>A: connectedatEnd</a></th>
+              <th><a href=#straightTruss>A: straightTruss</a></th>
+              <th><a href=#igWeight>A: igWeight</a></th>
+              <th><a href=#twokindForce>A: twokindForce</a></th>
+              <th><a href=#applyatJoint>A: applyatJoint</a></th>
+            </tr>
+            <tr>
+              <td><a href=#TM:staticEquilibrium>TM: staticEquilibrium</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionAx>IM: reactionAx</a></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionAy>IM: reactionAy</a></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionBy>IM: reactionBy</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalAC>IM: internalAC</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalAD>IM: internalAD</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalBC>IM: internalBC</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalBD>IM: internalBD</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalCD>IM: internalCD</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#inputValues>FR: Input-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#verifyInVals>FR: Verify-Input-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#calcValues>FR: Calculate-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#outputValues>FR: Output-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#accurate>NFR: Accuracy</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#verifiable>NFR: Verifiability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#understandable>NFR: Understandability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#portable>NFR: Portability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#maintainable>NFR: Maintainability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#reliable>NFR: Reliability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#usable>NFR: Usability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#likeChgNCbP>LC: Not-Connected-by-Pin</a></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#likeChgWoT>LC: Consider-Truss-Weight</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#likeChgOtherF>LC: Other-Forces-Involved</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#unlikeChgSIF>UC: Solve-Internal-Forces</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#unlikeChgStatD>UC: Statically-Determinate</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#unlikeChgST>UC: Straight-Truss</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <p class="caption">
+            Traceability Matrix Showing the Connections Between Assumptions and Other Items
+          </p>
+        </div>
+        <div id="Table:TraceMatRefvsRef">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th><a href=#TM:staticEquilibrium>TM: staticEquilibrium</a></th>
+              <th><a href=#IM:reactionAx>IM: reactionAx</a></th>
+              <th><a href=#IM:reactionAy>IM: reactionAy</a></th>
+              <th><a href=#IM:reactionBy>IM: reactionBy</a></th>
+              <th><a href=#IM:internalAC>IM: internalAC</a></th>
+              <th><a href=#IM:internalAD>IM: internalAD</a></th>
+              <th><a href=#IM:internalBC>IM: internalBC</a></th>
+              <th><a href=#IM:internalBD>IM: internalBD</a></th>
+              <th><a href=#IM:internalCD>IM: internalCD</a></th>
+            </tr>
+            <tr>
+              <td><a href=#TM:staticEquilibrium>TM: staticEquilibrium</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionAx>IM: reactionAx</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionAy>IM: reactionAy</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:reactionBy>IM: reactionBy</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalAC>IM: internalAC</a></td>
+              <td>X</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalAD>IM: internalAD</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalBC>IM: internalBC</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalBD>IM: internalBD</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#IM:internalCD>IM: internalCD</a></td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <p class="caption">
+            Traceability Matrix Showing the Connections Between Items and Other Sections
+          </p>
+        </div>
+        <div id="Table:TraceMatAllvsR">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th><a href=#TM:staticEquilibrium>TM: staticEquilibrium</a></th>
+              <th><a href=#IM:reactionAx>IM: reactionAx</a></th>
+              <th><a href=#IM:reactionAy>IM: reactionAy</a></th>
+              <th><a href=#IM:reactionBy>IM: reactionBy</a></th>
+              <th><a href=#IM:internalAC>IM: internalAC</a></th>
+              <th><a href=#IM:internalAD>IM: internalAD</a></th>
+              <th><a href=#IM:internalBC>IM: internalBC</a></th>
+              <th><a href=#IM:internalBD>IM: internalBD</a></th>
+              <th><a href=#IM:internalCD>IM: internalCD</a></th>
+              <th><a href=#inputValues>FR: Input-Values</a></th>
+              <th><a href=#verifyInVals>FR: Verify-Input-Values</a></th>
+              <th><a href=#calcValues>FR: Calculate-Values</a></th>
+              <th><a href=#outputValues>FR: Output-Values</a></th>
+              <th><a href=#accurate>NFR: Accuracy</a></th>
+              <th><a href=#verifiable>NFR: Verifiability</a></th>
+              <th><a href=#understandable>NFR: Understandability</a></th>
+              <th><a href=#portable>NFR: Portability</a></th>
+              <th><a href=#maintainable>NFR: Maintainability</a></th>
+              <th><a href=#reliable>NFR: Reliability</a></th>
+              <th><a href=#usable>NFR: Usability</a></th>
+            </tr>
+            <tr>
+              <td><a href=#reactionForce>GS: reactionForce</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#internalForce>GS: internalForce</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#stressDist>GS: stressDist</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#inputValues>FR: Input-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#verifyInVals>FR: Verify-Input-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#calcValues>FR: Calculate-Values</a></td>
+              <td></td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#outputValues>FR: Output-Values</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#accurate>NFR: Accuracy</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#verifiable>NFR: Verifiability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#understandable>NFR: Understandability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#portable>NFR: Portability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#maintainable>NFR: Maintainability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#reliable>NFR: Reliability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href=#usable>NFR: Usability</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <p class="caption">
+            Traceability Matrix Showing the Connections Between Requirements, Goal Statements and Other Items
           </p>
         </div>
       </div>

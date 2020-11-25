@@ -25,12 +25,10 @@ import Data.Drasil.Quantities.Math (pi_)
 
 import Data.Drasil.People
 import Data.Drasil.SI_Units(metre, radian, newton)
-import Data.Drasil.Concepts.Software(program)
 import Data.Drasil.Concepts.Computation (compcon)
 import Data.Drasil.Concepts.Documentation (doccon, doccon', problem, srsDomains)
+import qualified Data.Drasil.Concepts.Documentation as Doc (srs)
 import Data.Drasil.Concepts.Software (program, softwarecon)
-
-import Drasil.DocLang (SRSDecl, mkDoc)
 
 import Drasil.Truss.Concepts(truss, compression, forceEquilibrium, joint, 
   methodofJoint, moment, momentEquilibrium, pinSupport, reactionForce, rollerSupport, tension)
@@ -44,8 +42,6 @@ import Drasil.Truss.IMods (iMods)
 import Drasil.Truss.Requirements (funcReqs, nonfuncReqs)
 import Drasil.Truss.Changes (likelyChgs, unlikelyChgs)
 import Drasil.Truss.References (citations)
-
-import qualified Data.Drasil.Concepts.Documentation as Doc (srs)
 
 srs :: Document
 srs = mkDoc mkSRS (for'' titleize phrase) si
@@ -85,6 +81,7 @@ mkSRS = [
       ],
   LCsSec,
   UCsSec,
+  TraceabilitySec $ TraceabilityProg $ traceMatStandard si,
   AuxConstntSec $ AuxConsProg truss specParamValList,
   Bibliography
   ]

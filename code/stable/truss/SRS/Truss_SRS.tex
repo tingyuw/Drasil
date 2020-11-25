@@ -218,8 +218,8 @@ The instance models that govern Truss are presented in \hyperref[Sec:IMs]{Sectio
 This section simplifies the original problem and helps in developing the theoretical models by filling in the missing information for the physical system. The assumptions refine the scope by providing more detail.
 
 \begin{itemize}
-\item[staticDeterminate:\phantomsection\label{staticDeterminate}]{The  structure is statically determinate. (RefBy: \hyperref[unlikeChgStatD]{UC: Statically-Determinate}.)}
-\item[pinConnected:\phantomsection\label{pinConnected}]{All joints are connected by frictionless pins. (RefBy: \hyperref[likeChgNCbP]{LC: Not-Connected-by-Pin}.)}
+\item[staticDeterminate:\phantomsection\label{staticDeterminate}]{The  structure is statically determinate. (RefBy: \hyperref[unlikeChgStatD]{UC: Statically-Determinate} and \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}.)}
+\item[pinConnected:\phantomsection\label{pinConnected}]{All joints are connected by frictionless pins. (RefBy: \hyperref[IM:reactionAy]{IM: reactionAy}, \hyperref[IM:reactionAx]{IM: reactionAx}, and \hyperref[likeChgNCbP]{LC: Not-Connected-by-Pin}.)}
 \item[connectedatEnd:\phantomsection\label{connectedatEnd}]{Truss members are connected only at their end.}
 \item[straightTruss:\phantomsection\label{straightTruss}]{All the truss members are perfectly straight. (RefBy: \hyperref[unlikeChgST]{UC: Straight-Truss}.)}
 \item[igWeight:\phantomsection\label{igWeight}]{The weight of the members are negligibly small which can be ignored. (RefBy: \hyperref[likeChgWoT]{LC: Consider-Truss-Weight}.)}
@@ -242,17 +242,23 @@ Label & Static Equilibrium
         
 \\ \midrule \\
 Equation & \begin{displaymath}
-           {\mathbf{F}_{\text{x}}}=0
+           \displaystyle\sum{{\mathbf{F}_{\text{x}}}={\mathbf{F}_{\text{y}}}={\mathbf{M}_{\text{i}}}=0}
            \end{displaymath}
 \\ \midrule \\
 Description & \begin{symbDescription}
               \item{${\mathbf{F}_{\text{x}}}$ is the force component in the x direction (${\text{N}}$)}
+              \item{${\mathbf{F}_{\text{y}}}$ is the force component in the y direction (${\text{N}}$)}
+              \item{${\mathbf{M}_{\text{i}}}$ is the moment component of joint i ($\text{N}\text{m}$)}
               \end{symbDescription}
+\\ \midrule \\
+Notes & The structure is assumed to be statically determinate (from \hyperref[staticDeterminate]{A: staticDeterminate}).
+        
 \\ \midrule \\
 Source & \cite{mofjWiki} and \cite{momentWiki}
          
 \\ \midrule \\
-RefBy & 
+RefBy & \hyperref[IM:reactionBy]{IM: reactionBy}, \hyperref[IM:reactionAy]{IM: reactionAy}, \hyperref[IM:reactionAx]{IM: reactionAx}, \hyperref[IM:internalCD]{IM: internalCD}, \hyperref[IM:internalBD]{IM: internalBD}, \hyperref[IM:internalBC]{IM: internalBC}, \hyperref[IM:internalAD]{IM: internalAD}, and \hyperref[IM:internalAC]{IM: internalAC}
+        
 \\ \bottomrule
 \end{tabular}
 \end{minipage}
@@ -288,7 +294,7 @@ Description & \begin{symbDescription}
               \item{${\mathbf{F}_{\text{Ax}}}$ is the x-component of reaction force on joint A (${\text{N}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Because joint A is pinned, there is a reacting force in the x direction, ${\mathbf{F}_{\text{Ax}}}$. We apply the static equilibrium to slove the reaction force.
+Notes & There is a reacting force in the x direction, ${\mathbf{F}_{\text{Ax}}}$ , since joint A is pinned (from \hyperref[pinConnected]{A: pinConnected}). We apply the static equilibrium to slove the reaction force (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
         
 \\ \midrule \\
 Source & --
@@ -337,13 +343,15 @@ Description & \begin{symbDescription}
               \item{${x_{\text{1}}}$ is the distance from joint A to joint D (${\text{m}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & ${x_{\text{1}}}$ and ${x_{\text{2}}}$ are shown in \hyperref[Figure:physSysImage]{Fig:physSysImage}..
+Notes & There is a reacting force in the y direction, ${\mathbf{F}_{\text{Ay}}}$ , since joint A is pinned (from \hyperref[pinConnected]{A: pinConnected}). We apply the static equilibrium to slove the reaction force (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${x_{\text{1}}}$ and ${x_{\text{2}}}$ are shown in \hyperref[Figure:physSysImage]{Fig:physSysImage}..
         
 \\ \midrule \\
 Source & --
          
 \\ \midrule \\
-RefBy & \hyperref[calcValues]{FR: Calculate-Values}
+RefBy & \hyperref[IM:internalAC]{IM: internalAC} and \hyperref[calcValues]{FR: Calculate-Values}
         
 \\ \bottomrule
 \end{tabular}
@@ -386,13 +394,15 @@ Description & \begin{symbDescription}
               \item{${x_{\text{2}}}$ is the distance from joint D to joint B (${\text{m}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & ${x_{\text{1}}}$ and ${x_{\text{2}}}$ are shown in \hyperref[Figure:physSysImage]{Fig:physSysImage}..
+Notes & We apply the static equilibrium to slove the reaction force (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${x_{\text{1}}}$ and ${x_{\text{2}}}$ are shown in \hyperref[Figure:physSysImage]{Fig:physSysImage}..
         
 \\ \midrule \\
 Source & --
          
 \\ \midrule \\
-RefBy & \hyperref[calcValues]{FR: Calculate-Values}
+RefBy & \hyperref[IM:internalBC]{IM: internalBC} and \hyperref[calcValues]{FR: Calculate-Values}
         
 \\ \bottomrule
 \end{tabular}
@@ -431,13 +441,17 @@ Description & \begin{symbDescription}
               \item{${θ_{\text{1}}}$ is the angle between member 1 and 3 (${\text{rad}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
+Notes & $\displaystyle\sum{{\mathbf{F}_{\text{y}}}={\mathbf{F}_{\text{Ay}}}+{\mathbf{F}_{\text{AC}}} \sin\left({θ_{\text{1}}}\right)=0}$ (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${\mathbf{F}_{\text{Ay}}}$ is from \hyperref[IM:reactionAy]{IM: reactionAy}..
+        
+        Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
         
 \\ \midrule \\
 Source & --
          
 \\ \midrule \\
-RefBy & \hyperref[outputValues]{FR: Output-Values}
+RefBy & \hyperref[outputValues]{FR: Output-Values} and \hyperref[IM:internalAD]{IM: internalAD}
         
 \\ \bottomrule
 \end{tabular}
@@ -476,7 +490,11 @@ Description & \begin{symbDescription}
               \item{${θ_{\text{1}}}$ is the angle between member 1 and 3 (${\text{rad}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
+Notes & $\displaystyle\sum{{\mathbf{F}_{\text{x}}}={\mathbf{F}_{\text{AD}}}+{\mathbf{F}_{\text{AC}}} \cos\left({θ_{\text{1}}}\right)=0}$ (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${\mathbf{F}_{\text{AC}}}$ is from \hyperref[IM:internalAC]{IM: internalAC}..
+        
+        Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
         
 \\ \midrule \\
 Source & --
@@ -521,13 +539,17 @@ Description & \begin{symbDescription}
               \item{${θ_{\text{2}}}$ is the angle between member 2 and 4 (${\text{rad}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
+Notes & $\displaystyle\sum{{\mathbf{F}_{\text{y}}}={\mathbf{F}_{\text{By}}}+{\mathbf{F}_{\text{BC}}} \sin\left({θ_{\text{2}}}\right)=0}$ (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${\mathbf{F}_{\text{By}}}$ is from \hyperref[IM:reactionBy]{IM: reactionBy}..
+        
+        Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
         
 \\ \midrule \\
 Source & --
          
 \\ \midrule \\
-RefBy & \hyperref[outputValues]{FR: Output-Values}
+RefBy & \hyperref[outputValues]{FR: Output-Values} and \hyperref[IM:internalBD]{IM: internalBD}
         
 \\ \bottomrule
 \end{tabular}
@@ -566,7 +588,11 @@ Description & \begin{symbDescription}
               \item{${θ_{\text{2}}}$ is the angle between member 2 and 4 (${\text{rad}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
+Notes & $\displaystyle\sum{{\mathbf{F}_{\text{x}}}={\mathbf{F}_{\text{BD}}}+{\mathbf{F}_{\text{BC}}} \cos\left({θ_{\text{2}}}\right)=0}$ (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        ${\mathbf{F}_{\text{BC}}}$ is from \hyperref[IM:internalBC]{IM: internalBC}..
+        
+        Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
         
 \\ \midrule \\
 Source & --
@@ -608,7 +634,9 @@ Description & \begin{symbDescription}
               \item{${\mathbf{F}_{1}}$ is the external force (${\text{N}}$)}
               \end{symbDescription}
 \\ \midrule \\
-Notes & Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
+Notes & $\displaystyle\sum{{\mathbf{F}_{\text{y}}}={\mathbf{F}_{\text{CD}}}-{\mathbf{F}_{1}}=0}$ (from \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium})..
+        
+        Truss structure is show in \hyperref[Figure:physSysImage]{Fig:physSysImage}.
         
 \\ \midrule \\
 Source & --
@@ -725,6 +753,162 @@ This section lists the unlikely changes to be made to the software.
 \item[Statically-Determinate:\phantomsection\label{unlikeChgStatD}]{\hyperref[staticDeterminate]{A: staticDeterminate} -  The truss structure is statically determinate.}
 \item[Straight-Truss:\phantomsection\label{unlikeChgST}]{\hyperref[straightTruss]{A: straightTruss} -  The truss members are straight.}
 \end{itemize}
+\section{Traceability Matrices and Graphs}
+\label{Sec:TraceMatrices}
+The purpose of the traceability matrices is to provide easy references on what has to be additionally modified if a certain component is changed. Every time a component is changed, the items in the column of that component that are marked with an ``X'' should be modified as well. \hyperref[Table:TraceMatAvsA]{Table:TraceMatAvsA} shows the dependencies of assumptions on the assumptions. \hyperref[Table:TraceMatAvsAll]{Table:TraceMatAvsAll} shows the dependencies of data definitions, theoretical models, general definitions, instance models, requirements, likely changes, and unlikely changes on the assumptions. \hyperref[Table:TraceMatRefvsRef]{Table:TraceMatRefvsRef} shows the dependencies of data definitions, theoretical models, general definitions, and instance models with each other. \hyperref[Table:TraceMatAllvsR]{Table:TraceMatAllvsR} shows the dependencies of requirements, goal statements on the data definitions, theoretical models, general definitions, and instance models.
+
+\begin{longtable}{l l l l l l l l}
+\toprule
+\textbf{} & \textbf{\hyperref[staticDeterminate]{A: staticDeterminate}} & \textbf{\hyperref[pinConnected]{A: pinConnected}} & \textbf{\hyperref[connectedatEnd]{A: connectedatEnd}} & \textbf{\hyperref[straightTruss]{A: straightTruss}} & \textbf{\hyperref[igWeight]{A: igWeight}} & \textbf{\hyperref[twokindForce]{A: twokindForce}} & \textbf{\hyperref[applyatJoint]{A: applyatJoint}}
+\\
+\midrule
+\endhead
+\hyperref[staticDeterminate]{A: staticDeterminate} &  &  &  &  &  &  & 
+\\
+\hyperref[pinConnected]{A: pinConnected} &  &  &  &  &  &  & 
+\\
+\hyperref[connectedatEnd]{A: connectedatEnd} &  &  &  &  &  &  & 
+\\
+\hyperref[straightTruss]{A: straightTruss} &  &  &  &  &  &  & 
+\\
+\hyperref[igWeight]{A: igWeight} &  &  &  &  &  &  & 
+\\
+\hyperref[twokindForce]{A: twokindForce} &  &  &  &  &  &  & 
+\\
+\hyperref[applyatJoint]{A: applyatJoint} &  &  &  &  &  &  & 
+\\
+\bottomrule
+\caption{Traceability Matrix Showing the Connections Between Assumptions dependence of each other.}
+\label{Table:TraceMatAvsA}
+\end{longtable}
+\begin{longtable}{l l l l l l l l}
+\toprule
+\textbf{} & \textbf{\hyperref[staticDeterminate]{A: staticDeterminate}} & \textbf{\hyperref[pinConnected]{A: pinConnected}} & \textbf{\hyperref[connectedatEnd]{A: connectedatEnd}} & \textbf{\hyperref[straightTruss]{A: straightTruss}} & \textbf{\hyperref[igWeight]{A: igWeight}} & \textbf{\hyperref[twokindForce]{A: twokindForce}} & \textbf{\hyperref[applyatJoint]{A: applyatJoint}}
+\\
+\midrule
+\endhead
+\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium} & X &  &  &  &  &  & 
+\\
+\hyperref[IM:reactionAx]{IM: reactionAx} &  & X &  &  &  &  & 
+\\
+\hyperref[IM:reactionAy]{IM: reactionAy} &  & X &  &  &  &  & 
+\\
+\hyperref[IM:reactionBy]{IM: reactionBy} &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalAC]{IM: internalAC} &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalAD]{IM: internalAD} &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalBC]{IM: internalBC} &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalBD]{IM: internalBD} &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalCD]{IM: internalCD} &  &  &  &  &  &  & 
+\\
+\hyperref[inputValues]{FR: Input-Values} &  &  &  &  &  &  & 
+\\
+\hyperref[verifyInVals]{FR: Verify-Input-Values} &  &  &  &  &  &  & 
+\\
+\hyperref[calcValues]{FR: Calculate-Values} &  &  &  &  &  &  & 
+\\
+\hyperref[outputValues]{FR: Output-Values} &  &  &  &  &  &  & 
+\\
+\hyperref[accurate]{NFR: Accuracy} &  &  &  &  &  &  & 
+\\
+\hyperref[verifiable]{NFR: Verifiability} &  &  &  &  &  &  & 
+\\
+\hyperref[understandable]{NFR: Understandability} &  &  &  &  &  &  & 
+\\
+\hyperref[portable]{NFR: Portability} &  &  &  &  &  &  & 
+\\
+\hyperref[maintainable]{NFR: Maintainability} &  &  &  &  &  &  & 
+\\
+\hyperref[reliable]{NFR: Reliability} &  &  &  &  &  &  & 
+\\
+\hyperref[usable]{NFR: Usability} &  &  &  &  &  &  & 
+\\
+\hyperref[likeChgNCbP]{LC: Not-Connected-by-Pin} &  & X &  &  &  &  & 
+\\
+\hyperref[likeChgWoT]{LC: Consider-Truss-Weight} &  &  &  &  & X &  & 
+\\
+\hyperref[likeChgOtherF]{LC: Other-Forces-Involved} &  &  &  &  &  & X & 
+\\
+\hyperref[unlikeChgSIF]{UC: Solve-Internal-Forces} &  &  &  &  &  &  & 
+\\
+\hyperref[unlikeChgStatD]{UC: Statically-Determinate} & X &  &  &  &  &  & 
+\\
+\hyperref[unlikeChgST]{UC: Straight-Truss} &  &  &  & X &  &  & 
+\\
+\bottomrule
+\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
+\label{Table:TraceMatAvsAll}
+\end{longtable}
+\begin{longtable}{l l l l l l l l l l}
+\toprule
+\textbf{} & \textbf{\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}} & \textbf{\hyperref[IM:reactionAx]{IM: reactionAx}} & \textbf{\hyperref[IM:reactionAy]{IM: reactionAy}} & \textbf{\hyperref[IM:reactionBy]{IM: reactionBy}} & \textbf{\hyperref[IM:internalAC]{IM: internalAC}} & \textbf{\hyperref[IM:internalAD]{IM: internalAD}} & \textbf{\hyperref[IM:internalBC]{IM: internalBC}} & \textbf{\hyperref[IM:internalBD]{IM: internalBD}} & \textbf{\hyperref[IM:internalCD]{IM: internalCD}}
+\\
+\midrule
+\endhead
+\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium} &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[IM:reactionAx]{IM: reactionAx} & X &  &  &  &  &  &  &  & 
+\\
+\hyperref[IM:reactionAy]{IM: reactionAy} & X &  &  &  &  &  &  &  & 
+\\
+\hyperref[IM:reactionBy]{IM: reactionBy} & X &  &  &  &  &  &  &  & 
+\\
+\hyperref[IM:internalAC]{IM: internalAC} & X &  & X &  &  &  &  &  & 
+\\
+\hyperref[IM:internalAD]{IM: internalAD} & X &  &  &  & X &  &  &  & 
+\\
+\hyperref[IM:internalBC]{IM: internalBC} & X &  &  & X &  &  &  &  & 
+\\
+\hyperref[IM:internalBD]{IM: internalBD} & X &  &  &  &  &  & X &  & 
+\\
+\hyperref[IM:internalCD]{IM: internalCD} & X &  &  &  &  &  &  &  & 
+\\
+\bottomrule
+\caption{Traceability Matrix Showing the Connections Between Items and Other Sections}
+\label{Table:TraceMatRefvsRef}
+\end{longtable}
+\begin{longtable}{l l l l l l l l l l l l l l l l l l l l l}
+\toprule
+\textbf{} & \textbf{\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}} & \textbf{\hyperref[IM:reactionAx]{IM: reactionAx}} & \textbf{\hyperref[IM:reactionAy]{IM: reactionAy}} & \textbf{\hyperref[IM:reactionBy]{IM: reactionBy}} & \textbf{\hyperref[IM:internalAC]{IM: internalAC}} & \textbf{\hyperref[IM:internalAD]{IM: internalAD}} & \textbf{\hyperref[IM:internalBC]{IM: internalBC}} & \textbf{\hyperref[IM:internalBD]{IM: internalBD}} & \textbf{\hyperref[IM:internalCD]{IM: internalCD}} & \textbf{\hyperref[inputValues]{FR: Input-Values}} & \textbf{\hyperref[verifyInVals]{FR: Verify-Input-Values}} & \textbf{\hyperref[calcValues]{FR: Calculate-Values}} & \textbf{\hyperref[outputValues]{FR: Output-Values}} & \textbf{\hyperref[accurate]{NFR: Accuracy}} & \textbf{\hyperref[verifiable]{NFR: Verifiability}} & \textbf{\hyperref[understandable]{NFR: Understandability}} & \textbf{\hyperref[portable]{NFR: Portability}} & \textbf{\hyperref[maintainable]{NFR: Maintainability}} & \textbf{\hyperref[reliable]{NFR: Reliability}} & \textbf{\hyperref[usable]{NFR: Usability}}
+\\
+\midrule
+\endhead
+\hyperref[reactionForce]{GS: reactionForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[internalForce]{GS: internalForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[stressDist]{GS: stressDist} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[inputValues]{FR: Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[verifyInVals]{FR: Verify-Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[calcValues]{FR: Calculate-Values} &  & X & X & X &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[outputValues]{FR: Output-Values} &  &  &  &  & X & X & X & X & X &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[accurate]{NFR: Accuracy} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[verifiable]{NFR: Verifiability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[understandable]{NFR: Understandability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[portable]{NFR: Portability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[maintainable]{NFR: Maintainability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[reliable]{NFR: Reliability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\hyperref[usable]{NFR: Usability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\\
+\bottomrule
+\caption{Traceability Matrix Showing the Connections Between Requirements, Goal Statements and Other Items}
+\label{Table:TraceMatAllvsR}
+\end{longtable}
 \section{Values of Auxiliary Constants}
 \label{Sec:AuxConstants}
 This section contains the standard values that are used for calculations in Truss.
