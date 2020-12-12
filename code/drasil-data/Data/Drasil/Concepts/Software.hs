@@ -11,7 +11,7 @@ import Control.Lens ((^.))
 softwarecon :: [ConceptChunk]
 softwarecon = [correctness, verifiability, physLib,
   understandability, reusability, maintainability, portability,
-  performance, program, errMsg, accuracy, correctness, reliability]
+  performance, program, errMsg, accuracy, correctness, reliability, usability]
 
 c, errMsg, physLib, program :: ConceptChunk
 
@@ -27,7 +27,7 @@ errMsg  = dcc "errMsg" (cn' "error message")
 -- Non-functional requirements  
 
 accuracy, correctness, maintainability, performance, performanceSpd, portability,
-  reliability, reusability, understandability, verifiability :: ConceptChunk
+  reliability, reusability, understandability, verifiability, usability:: ConceptChunk
 
 qualOfBeing :: String -> String
 qualOfBeing s = "the quality or state of being" ++ s
@@ -56,6 +56,9 @@ reliability       = dcc "reliability"       (nounPhraseSP "reliability")
 
 reusability       = dcc "reusability"       (nounPhraseSP "reusability")
   "the use of existing assets in some form within the software product development process"
+  
+usability        = dcc "usability"       (nounPhraseSP "usability")
+  "the extent of ease with which users can learn to operate and interpret the output of the software"
 
 understandability = dcc "understandability" (nounPhraseSP "understandability")
   $ qualOfBeing "understandable"
