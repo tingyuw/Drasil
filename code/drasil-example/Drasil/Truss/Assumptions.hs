@@ -21,7 +21,7 @@ twokindForce      = cic "twokindForce"      twokindForceDesc      "twokindForce"
 applyatJoint      = cic "applyatJoint"      applyatJointDesc      "applyatJoint"      assumpDom
 
 staticDeterminateDesc :: Sentence
-staticDeterminateDesc = S "The  structure" `sIs` S "statically determinate." 
+staticDeterminateDesc = S "The structure" `sIs` S "statically determinate." 
 
 pinConnectedDesc :: Sentence
 pinConnectedDesc = S "All joints" `sAre` S "connected by frictionless pins."

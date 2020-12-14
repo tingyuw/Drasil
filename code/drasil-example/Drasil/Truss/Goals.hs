@@ -5,7 +5,7 @@ import Language.Drasil
 import Data.Drasil.Concepts.Documentation (goalStmtDom)
 
 goals :: [ConceptInstance]
-goals = [reactionForce, internalForce, stressDist]
+goals = [reactionForce, internalForce]
 
 reactionForce :: ConceptInstance
 reactionForce = cic "reactionForce" 
@@ -17,7 +17,3 @@ internalForce = cic "internalForce"
   (S "Solve the internal forces acting on truss members.") 
   "internalForce" goalStmtDom
 
-stressDist :: ConceptInstance
-stressDist = cic "stressDist" 
-  (S "Determine the stress distribution for each internal force.")
-  "stressDist" goalStmtDom

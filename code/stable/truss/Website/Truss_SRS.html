@@ -65,12 +65,12 @@
                 </tr>
                 <tr>
                   <td><em>d<sub>max</sub></em></td>
-                  <td>Maximum  value for distance</td>
+                  <td>Maximum value for distance</td>
                   <td><em>m</em></td>
                 </tr>
                 <tr>
                   <td><em>d<sub>min</sub></em></td>
-                  <td>Minimum  value for distance</td>
+                  <td>Minimum value for distance</td>
                   <td><em>m</em></td>
                 </tr>
                 <tr>
@@ -120,12 +120,12 @@
                 </tr>
                 <tr>
                   <td><em><b>F</b><sub>max</sub></em></td>
-                  <td>Maximum  value for external force</td>
+                  <td>Maximum value for external force</td>
                   <td><em>N</em></td>
                 </tr>
                 <tr>
                   <td><em><b>F</b><sub>min</sub></em></td>
-                  <td>Minimum  value for external force</td>
+                  <td>Minimum value for external force</td>
                   <td><em>N</em></td>
                 </tr>
                 <tr>
@@ -170,12 +170,12 @@
                 </tr>
                 <tr>
                   <td><em>θ<sub>max</sub></em></td>
-                  <td>Maximum  value for angle</td>
+                  <td>Maximum value for angle</td>
                   <td><em>rad</em></td>
                 </tr>
                 <tr>
                   <td><em>θ<sub>min</sub></em></td>
-                  <td>Minimum  value for angle</td>
+                  <td>Minimum value for angle</td>
                   <td><em>rad</em></td>
                 </tr>
                 <tr>
@@ -288,26 +288,26 @@
                 <ul class="list">
                   <li>Compression: The force that squeezes materials together.</li>
                   <li>
-                    ForceEquilibrium: A body is in force equilibrium if the sum of all the forces acting on the body is zero.
+                    Force Equilibrium: A body is in force equilibrium if the sum of all the forces acting on the body is zero.
                   </li>
                   <li>Joint: A place where two trusses are connected.</li>
                   <li>
-                    MethodofJoint: A way to find unknown forces in a truss structure. The principle behind this method is that all forces acting on a joint must add to zero.
+                    Method of Joint: A way to find unknown forces in a truss structure. The principle behind this method is that all forces acting on a joint must add to zero.
                   </li>
                   <li>
                     Moment: Moment of a force, also called torque, is the tendency to cause a body to rotate about a specific point or axis.
                   </li>
                   <li>
-                    MomentEquilibrium: A body is in moment equilibrium if the sum of all the moments of all the forces acting on the body is zero.
+                    Moment Equilibrium: A body is in moment equilibrium if the sum of all the moments of all the forces acting on the body is zero.
                   </li>
                   <li>
-                    PinSupport: A kind of structural support can have both a horizontal x direction force and a vertical y direction force.
+                    Pin Support: A kind of structural support can have both a horizontal x direction force and a vertical y direction force.
                   </li>
                   <li>
-                    ReactionForce: An external force on a body which is contributed by its supports or connections.
+                    Reaction Force: An external force on a body which is contributed by its supports or connections.
                   </li>
                   <li>
-                    RollerSupport: A kind of structural support can only have a vertical y direction force.
+                    Roller Support: A kind of structural support can only have a vertical y direction force.
                   </li>
                   <li>Tension: The force that pulls materials apart.</li>
                 </ul>
@@ -350,11 +350,6 @@
                       internalForce: Solve the internal forces acting on truss members.
                     </div>
                   </p>
-                  <p>
-                    <div id="stressDist">
-                      stressDist: Determine the stress distribution for each internal force.
-                    </div>
-                  </p>
                 </div>
               </div>
             </div>
@@ -375,7 +370,7 @@
                 <div class="list">
                   <p>
                     <div id="staticDeterminate">
-                      staticDeterminate: The  structure is statically determinate. (RefBy: <a href=#unlikeChgStatD>UC: Statically-Determinate</a> and <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>.)
+                      staticDeterminate: The structure is statically determinate. (RefBy: <a href=#unlikeChgStatD>UC: Statically-Determinate</a> and <a href=#TM:staticEquilibrium>TM: staticEquilibrium</a>.)
                     </div>
                   </p>
                   <p>
@@ -1180,7 +1175,7 @@
                       <td>
                         <em>d<sub>min</sub>&thinsp;&lt;&thinsp;x<sub>2</sub>&thinsp;&le;&thinsp;d<sub>max</sub></em>
                       </td>
-                      <td><em>7.0</em> <em>m</em></td>
+                      <td><em>3.0</em> <em>m</em></td>
                       <td>10<em>%</em></td>
                     </tr>
                     <tr>
@@ -1191,7 +1186,7 @@
                       <td>
                         <em>θ<sub>min</sub>&thinsp;&lt;&thinsp;θ<sub>1</sub>&thinsp;&lt;&thinsp;θ<sub>max</sub></em>
                       </td>
-                      <td><em>\(\frac{π}{6}\)</em> <em>rad</em></td>
+                      <td><em>\(\frac{π}{4}\)</em> <em>rad</em></td>
                       <td>10<em>%</em></td>
                     </tr>
                     <tr>
@@ -1202,7 +1197,7 @@
                       <td>
                         <em>θ<sub>min</sub>&thinsp;&lt;&thinsp;θ<sub>2</sub>&thinsp;&lt;&thinsp;θ<sub>max</sub></em>
                       </td>
-                      <td><em>\(\frac{π}{6}\)</em> <em>rad</em></td>
+                      <td><em>\(\frac{π}{4}\)</em> <em>rad</em></td>
                       <td>10<em>%</em></td>
                     </tr>
                   </table>
@@ -1327,27 +1322,22 @@
               </p>
               <p>
                 <div id="understandable">
-                  Understandability: The code and the design of the software should be easy to understand  by a new developer.
+                  Understandability: The code and the design of the software should be understandable  by a new developer.
                 </div>
               </p>
               <p>
                 <div id="portable">
-                  Portability: The code is able to be run in different environments.
+                  Portability: The code is able to be run on different environments.
                 </div>
               </p>
               <p>
                 <div id="maintainable">
-                  Maintainability: The traceability between requirements, assumptions, theoretical models, instance models, likely changes, unlikely changes, and modules is completely recorded in traceability matrices in the SRS.
+                  Maintainability: The software can be modified and improved easily.
                 </div>
               </p>
               <p>
                 <div id="reliable">
                   Reliability: The probability of failure-free software operation for required functions for a specified period of time.
-                </div>
-              </p>
-              <p>
-                <div id="usable">
-                  Usability: The system should be easy to learn and use.
                 </div>
               </p>
             </div>
@@ -1701,16 +1691,6 @@
               <td></td>
             </tr>
             <tr>
-              <td><a href=#usable>NFR: Usability</a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td><a href=#likeChgNCbP>LC: Not-Connected-by-Pin</a></td>
               <td></td>
               <td>X</td>
@@ -1925,11 +1905,9 @@
               <th><a href=#portable>NFR: Portability</a></th>
               <th><a href=#maintainable>NFR: Maintainability</a></th>
               <th><a href=#reliable>NFR: Reliability</a></th>
-              <th><a href=#usable>NFR: Usability</a></th>
             </tr>
             <tr>
               <td><a href=#reactionForce>GS: reactionForce</a></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1971,34 +1949,9 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><a href=#stressDist>GS: stressDist</a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#inputValues>FR: Input-Values</a></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -2040,7 +1993,6 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#calcValues>FR: Calculate-Values</a></td>
@@ -2048,7 +2000,6 @@
               <td>X</td>
               <td>X</td>
               <td>X</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -2086,11 +2037,9 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#accurate>NFR: Accuracy</a></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -2132,11 +2081,9 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#understandable>NFR: Understandability</a></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -2178,7 +2125,6 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#maintainable>NFR: Maintainability</a></td>
@@ -2201,34 +2147,9 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td><a href=#reliable>NFR: Reliability</a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><a href=#usable>NFR: Usability</a></td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -2272,37 +2193,37 @@
             </tr>
             <tr>
               <td><em>d<sub>max</sub></em></td>
-              <td>maximum  value for distance</td>
+              <td>maximum value for distance</td>
               <td><em>100000</em></td>
               <td><em>m</em></td>
             </tr>
             <tr>
               <td><em>d<sub>min</sub></em></td>
-              <td>minimum  value for distance</td>
+              <td>minimum value for distance</td>
               <td><em>0.0</em></td>
               <td><em>m</em></td>
             </tr>
             <tr>
               <td><em><b>F</b><sub>max</sub></em></td>
-              <td>maximum  value for external force</td>
+              <td>maximum value for external force</td>
               <td><em>100000</em></td>
               <td><em>N</em></td>
             </tr>
             <tr>
               <td><em><b>F</b><sub>min</sub></em></td>
-              <td>minimum  value for external force</td>
+              <td>minimum value for external force</td>
               <td><em>&minus;100000</em></td>
               <td><em>N</em></td>
             </tr>
             <tr>
               <td><em>θ<sub>max</sub></em></td>
-              <td>maximum  value for angle</td>
+              <td>maximum value for angle</td>
               <td><em>\(\frac{π}{2}\)</em></td>
               <td><em>rad</em></td>
             </tr>
             <tr>
               <td><em>θ<sub>min</sub></em></td>
-              <td>minimum  value for angle</td>
+              <td>minimum value for angle</td>
               <td><em>\(\frac{π}{2}\)</em></td>
               <td><em>rad</em></td>
             </tr>

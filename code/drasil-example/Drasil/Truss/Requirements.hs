@@ -52,7 +52,7 @@ outputValuesDesc = foldlSent [atStart output_,
 
 --Nonfunctional Requirements--
 nonfuncReqs :: [ConceptInstance]
-nonfuncReqs = [accurate, verifiable, understandable, portable, maintainable, reliable, usable]
+nonfuncReqs = [accurate, verifiable, understandable, portable, maintainable, reliable]
 
 accurate :: ConceptInstance
 accurate = cic "accurate" (foldlSent [
@@ -67,26 +67,20 @@ verifiable = cic "verifiable" (foldlSent [
 
 understandable :: ConceptInstance
 understandable = cic "understandable" (foldlSent [
-  S "The", phrase code, S "and the design of the software should be easy to understand" +:+
+  S "The", phrase code, S "and the design of the software should be understandable" +:+
   S " by a new developer"]) "Understandability" nonFuncReqDom
 
 portable :: ConceptInstance
 portable = cic "portable" (foldlSent [
-  S "The", phrase code, S "is able to be run in different", plural environment])
+  S "The", phrase code, S "is able to be run on different", plural environment])
   "Portability" nonFuncReqDom
 
 maintainable :: ConceptInstance
 maintainable = cic "maintainable" (foldlSent [
-  S "The traceability between", foldlList Comma List [plural requirement,
-  plural assumption, plural thModel, plural inModel, plural likelyChg, 
-  plural unlikelyChg, plural module_], S "is completely recorded in",
-  plural traceyMatrix, S "in the", getAcc srs]) "Maintainability" nonFuncReqDom
+  S "The software can be modified and improved easily"]) "Maintainability" nonFuncReqDom
 
 reliable :: ConceptInstance
 reliable = cic "reliable" (foldlSent [
   S "The probability of failure-free software operation for required functions" +:+
   S "for a specified period of time"]) "Reliability" nonFuncReqDom
 
-usable :: ConceptInstance
-usable = cic "usable" (foldlSent [
-  S "The system should be easy to learn and use"]) "Usability" nonFuncReqDom

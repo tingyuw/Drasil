@@ -63,9 +63,9 @@ The symbols used in this document are summarized in \hyperref[Table:ToS]{Tab: To
 \\
 \midrule
 \endhead
-${d_{\text{max}}}$ & Maximum  value for distance & ${\text{m}}$
+${d_{\text{max}}}$ & Maximum value for distance & ${\text{m}}$
 \\
-${d_{\text{min}}}$ & Minimum  value for distance & ${\text{m}}$
+${d_{\text{min}}}$ & Minimum value for distance & ${\text{m}}$
 \\
 ${\mathbf{F}_{1}}$ & External force & ${\text{N}}$
 \\
@@ -85,9 +85,9 @@ ${\mathbf{F}_{\text{By}}}$ & Y-component of reaction force on joint B & ${\text{
 \\
 ${\mathbf{F}_{\text{CD}}}$ & Force between joint C and D & ${\text{N}}$
 \\
-${\mathbf{F}_{\text{max}}}$ & Maximum  value for external force & ${\text{N}}$
+${\mathbf{F}_{\text{max}}}$ & Maximum value for external force & ${\text{N}}$
 \\
-${\mathbf{F}_{\text{min}}}$ & Minimum  value for external force & ${\text{N}}$
+${\mathbf{F}_{\text{min}}}$ & Minimum value for external force & ${\text{N}}$
 \\
 ${\mathbf{F}_{\text{out}}}$ & All the output forces & ${\text{N}}$
 \\
@@ -105,9 +105,9 @@ ${θ_{\text{1}}}$ & Angle between member 1 and 3 & ${\text{rad}}$
 \\
 ${θ_{\text{2}}}$ & Angle between member 2 and 4 & ${\text{rad}}$
 \\
-${θ_{\text{max}}}$ & Maximum  value for angle & ${\text{rad}}$
+${θ_{\text{max}}}$ & Maximum value for angle & ${\text{rad}}$
 \\
-${θ_{\text{min}}}$ & Minimum  value for angle & ${\text{rad}}$
+${θ_{\text{min}}}$ & Minimum value for angle & ${\text{rad}}$
 \\
 $π$ & Ratio of circumference to diameter for any circle & --
 \\
@@ -173,14 +173,14 @@ This subsection provides a list of terms that are used in the subsequent section
 
 \begin{itemize}
 \item{Compression: The force that squeezes materials together.}
-\item{ForceEquilibrium: A body is in force equilibrium if the sum of all the forces acting on the body is zero.}
+\item{Force Equilibrium: A body is in force equilibrium if the sum of all the forces acting on the body is zero.}
 \item{Joint: A place where two trusses are connected.}
-\item{MethodofJoint: A way to find unknown forces in a truss structure. The principle behind this method is that all forces acting on a joint must add to zero.}
+\item{Method of Joint: A way to find unknown forces in a truss structure. The principle behind this method is that all forces acting on a joint must add to zero.}
 \item{Moment: Moment of a force, also called torque, is the tendency to cause a body to rotate about a specific point or axis.}
-\item{MomentEquilibrium: A body is in moment equilibrium if the sum of all the moments of all the forces acting on the body is zero.}
-\item{PinSupport: A kind of structural support can have both a horizontal x direction force and a vertical y direction force.}
-\item{ReactionForce: An external force on a body which is contributed by its supports or connections.}
-\item{RollerSupport: A kind of structural support can only have a vertical y direction force.}
+\item{Moment Equilibrium: A body is in moment equilibrium if the sum of all the moments of all the forces acting on the body is zero.}
+\item{Pin Support: A kind of structural support can have both a horizontal x direction force and a vertical y direction force.}
+\item{Reaction Force: An external force on a body which is contributed by its supports or connections.}
+\item{Roller Support: A kind of structural support can only have a vertical y direction force.}
 \item{Tension: The force that pulls materials apart.}
 \end{itemize}
 \subsubsection{Physical System Description}
@@ -207,7 +207,6 @@ Given truss properties and the external force, the goal statements are:
 \begin{itemize}
 \item[reactionForce:\phantomsection\label{reactionForce}]{Solve the support reaction forces.}
 \item[internalForce:\phantomsection\label{internalForce}]{Solve the internal forces acting on truss members.}
-\item[stressDist:\phantomsection\label{stressDist}]{Determine the stress distribution for each internal force.}
 \end{itemize}
 \subsection{Solution Characteristics Specification}
 \label{Sec:SolCharSpec}
@@ -218,7 +217,7 @@ The instance models that govern Truss are presented in \hyperref[Sec:IMs]{Sectio
 This section simplifies the original problem and helps in developing the theoretical models by filling in the missing information for the physical system. The assumptions refine the scope by providing more detail.
 
 \begin{itemize}
-\item[staticDeterminate:\phantomsection\label{staticDeterminate}]{The  structure is statically determinate. (RefBy: \hyperref[unlikeChgStatD]{UC: Statically-Determinate} and \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}.)}
+\item[staticDeterminate:\phantomsection\label{staticDeterminate}]{The structure is statically determinate. (RefBy: \hyperref[unlikeChgStatD]{UC: Statically-Determinate} and \hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}.)}
 \item[pinConnected:\phantomsection\label{pinConnected}]{All joints are connected by frictionless pins. (RefBy: \hyperref[IM:reactionAy]{IM: reactionAy}, \hyperref[IM:reactionAx]{IM: reactionAx}, and \hyperref[likeChgNCbP]{LC: Not-Connected-by-Pin}.)}
 \item[connectedatEnd:\phantomsection\label{connectedatEnd}]{Truss members are connected only at their end.}
 \item[straightTruss:\phantomsection\label{straightTruss}]{All the truss members are perfectly straight. (RefBy: \hyperref[unlikeChgST]{UC: Straight-Truss}.)}
@@ -662,11 +661,11 @@ ${\mathbf{F}_{1}}$ & ${\mathbf{F}_{1}}\gt{}0$ & ${\mathbf{F}_{\text{min}}}\leq{}
 \\
 ${x_{\text{1}}}$ & ${x_{\text{1}}}\gt{}0$ & ${d_{\text{min}}}\lt{}{x_{\text{1}}}\leq{}{d_{\text{max}}}$ & $3.0$ ${\text{m}}$ & 10$\%$
 \\
-${x_{\text{2}}}$ & ${x_{\text{2}}}\gt{}0$ & ${d_{\text{min}}}\lt{}{x_{\text{2}}}\leq{}{d_{\text{max}}}$ & $7.0$ ${\text{m}}$ & 10$\%$
+${x_{\text{2}}}$ & ${x_{\text{2}}}\gt{}0$ & ${d_{\text{min}}}\lt{}{x_{\text{2}}}\leq{}{d_{\text{max}}}$ & $3.0$ ${\text{m}}$ & 10$\%$
 \\
-${θ_{\text{1}}}$ & $0\lt{}{θ_{\text{1}}}\lt{}π$ & ${θ_{\text{min}}}\lt{}{θ_{\text{1}}}\lt{}{θ_{\text{max}}}$ & $\frac{π}{6}$ ${\text{rad}}$ & 10$\%$
+${θ_{\text{1}}}$ & $0\lt{}{θ_{\text{1}}}\lt{}π$ & ${θ_{\text{min}}}\lt{}{θ_{\text{1}}}\lt{}{θ_{\text{max}}}$ & $\frac{π}{4}$ ${\text{rad}}$ & 10$\%$
 \\
-${θ_{\text{2}}}$ & $0\lt{}{θ_{\text{2}}}\lt{}π$ & ${θ_{\text{min}}}\lt{}{θ_{\text{2}}}\lt{}{θ_{\text{max}}}$ & $\frac{π}{6}$ ${\text{rad}}$ & 10$\%$
+${θ_{\text{2}}}$ & $0\lt{}{θ_{\text{2}}}\lt{}π$ & ${θ_{\text{min}}}\lt{}{θ_{\text{2}}}\lt{}{θ_{\text{max}}}$ & $\frac{π}{4}$ ${\text{rad}}$ & 10$\%$
 \\
 \bottomrule
 \caption{Input Data Constraints}
@@ -729,11 +728,10 @@ This section provides the non-functional requirements, the qualities that the so
 \begin{itemize}
 \item[Accuracy:\phantomsection\label{accurate}]{The accuracy of the computed solutions should meet the level needed for structural mechanic and have the properties described in \hyperref[Sec:CorSolProps]{Section: Properties of a Correct Solution}.}
 \item[Verifiability:\phantomsection\label{verifiable}]{The properties of the software should be able to tested easily through verification and validation plan.}
-\item[Understandability:\phantomsection\label{understandable}]{The code and the design of the software should be easy to understand  by a new developer.}
-\item[Portability:\phantomsection\label{portable}]{The code is able to be run in different environments.}
-\item[Maintainability:\phantomsection\label{maintainable}]{The traceability between requirements, assumptions, theoretical models, instance models, likely changes, unlikely changes, and modules is completely recorded in traceability matrices in the SRS.}
+\item[Understandability:\phantomsection\label{understandable}]{The code and the design of the software should be understandable  by a new developer.}
+\item[Portability:\phantomsection\label{portable}]{The code is able to be run on different environments.}
+\item[Maintainability:\phantomsection\label{maintainable}]{The software can be modified and improved easily.}
 \item[Reliability:\phantomsection\label{reliable}]{The probability of failure-free software operation for required functions for a specified period of time.}
-\item[Usability:\phantomsection\label{usable}]{The system should be easy to learn and use.}
 \end{itemize}
 \section{Likely Changes}
 \label{Sec:LCs}
@@ -825,8 +823,6 @@ The purpose of the traceability matrices is to provide easy references on what h
 \\
 \hyperref[reliable]{NFR: Reliability} &  &  &  &  &  &  & 
 \\
-\hyperref[usable]{NFR: Usability} &  &  &  &  &  &  & 
-\\
 \hyperref[likeChgNCbP]{LC: Not-Connected-by-Pin} &  & X &  &  &  &  & 
 \\
 \hyperref[likeChgWoT]{LC: Consider-Truss-Weight} &  &  &  &  & X &  & 
@@ -871,39 +867,35 @@ The purpose of the traceability matrices is to provide easy references on what h
 \caption{Traceability Matrix Showing the Connections Between Items and Other Sections}
 \label{Table:TraceMatRefvsRef}
 \end{longtable}
-\begin{longtable}{l l l l l l l l l l l l l l l l l l l l l}
+\begin{longtable}{l l l l l l l l l l l l l l l l l l l l}
 \toprule
-\textbf{} & \textbf{\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}} & \textbf{\hyperref[IM:reactionAx]{IM: reactionAx}} & \textbf{\hyperref[IM:reactionAy]{IM: reactionAy}} & \textbf{\hyperref[IM:reactionBy]{IM: reactionBy}} & \textbf{\hyperref[IM:internalAC]{IM: internalAC}} & \textbf{\hyperref[IM:internalAD]{IM: internalAD}} & \textbf{\hyperref[IM:internalBC]{IM: internalBC}} & \textbf{\hyperref[IM:internalBD]{IM: internalBD}} & \textbf{\hyperref[IM:internalCD]{IM: internalCD}} & \textbf{\hyperref[inputValues]{FR: Input-Values}} & \textbf{\hyperref[verifyInVals]{FR: Verify-Input-Values}} & \textbf{\hyperref[calcValues]{FR: Calculate-Values}} & \textbf{\hyperref[outputValues]{FR: Output-Values}} & \textbf{\hyperref[accurate]{NFR: Accuracy}} & \textbf{\hyperref[verifiable]{NFR: Verifiability}} & \textbf{\hyperref[understandable]{NFR: Understandability}} & \textbf{\hyperref[portable]{NFR: Portability}} & \textbf{\hyperref[maintainable]{NFR: Maintainability}} & \textbf{\hyperref[reliable]{NFR: Reliability}} & \textbf{\hyperref[usable]{NFR: Usability}}
+\textbf{} & \textbf{\hyperref[TM:staticEquilibrium]{TM: staticEquilibrium}} & \textbf{\hyperref[IM:reactionAx]{IM: reactionAx}} & \textbf{\hyperref[IM:reactionAy]{IM: reactionAy}} & \textbf{\hyperref[IM:reactionBy]{IM: reactionBy}} & \textbf{\hyperref[IM:internalAC]{IM: internalAC}} & \textbf{\hyperref[IM:internalAD]{IM: internalAD}} & \textbf{\hyperref[IM:internalBC]{IM: internalBC}} & \textbf{\hyperref[IM:internalBD]{IM: internalBD}} & \textbf{\hyperref[IM:internalCD]{IM: internalCD}} & \textbf{\hyperref[inputValues]{FR: Input-Values}} & \textbf{\hyperref[verifyInVals]{FR: Verify-Input-Values}} & \textbf{\hyperref[calcValues]{FR: Calculate-Values}} & \textbf{\hyperref[outputValues]{FR: Output-Values}} & \textbf{\hyperref[accurate]{NFR: Accuracy}} & \textbf{\hyperref[verifiable]{NFR: Verifiability}} & \textbf{\hyperref[understandable]{NFR: Understandability}} & \textbf{\hyperref[portable]{NFR: Portability}} & \textbf{\hyperref[maintainable]{NFR: Maintainability}} & \textbf{\hyperref[reliable]{NFR: Reliability}}
 \\
 \midrule
 \endhead
-\hyperref[reactionForce]{GS: reactionForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[reactionForce]{GS: reactionForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[internalForce]{GS: internalForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[internalForce]{GS: internalForce} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[stressDist]{GS: stressDist} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[inputValues]{FR: Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[inputValues]{FR: Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[verifyInVals]{FR: Verify-Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[verifyInVals]{FR: Verify-Input-Values} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[calcValues]{FR: Calculate-Values} &  & X & X & X &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[calcValues]{FR: Calculate-Values} &  & X & X & X &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[outputValues]{FR: Output-Values} &  &  &  &  & X & X & X & X & X &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[outputValues]{FR: Output-Values} &  &  &  &  & X & X & X & X & X &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[accurate]{NFR: Accuracy} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[accurate]{NFR: Accuracy} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[verifiable]{NFR: Verifiability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[verifiable]{NFR: Verifiability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[understandable]{NFR: Understandability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[understandable]{NFR: Understandability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[portable]{NFR: Portability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[portable]{NFR: Portability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[maintainable]{NFR: Maintainability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
-\hyperref[maintainable]{NFR: Maintainability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
-\\
-\hyperref[reliable]{NFR: Reliability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
-\\
-\hyperref[usable]{NFR: Usability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
+\hyperref[reliable]{NFR: Reliability} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 
 \\
 \bottomrule
 \caption{Traceability Matrix Showing the Connections Between Requirements, Goal Statements and Other Items}
@@ -919,17 +911,17 @@ This section contains the standard values that are used for calculations in Trus
 \\
 \midrule
 \endhead
-${d_{\text{max}}}$ & maximum  value for distance & $100000$ & ${\text{m}}$
+${d_{\text{max}}}$ & maximum value for distance & $100000$ & ${\text{m}}$
 \\
-${d_{\text{min}}}$ & minimum  value for distance & $0.0$ & ${\text{m}}$
+${d_{\text{min}}}$ & minimum value for distance & $0.0$ & ${\text{m}}$
 \\
-${\mathbf{F}_{\text{max}}}$ & maximum  value for external force & $100000$ & ${\text{N}}$
+${\mathbf{F}_{\text{max}}}$ & maximum value for external force & $100000$ & ${\text{N}}$
 \\
-${\mathbf{F}_{\text{min}}}$ & minimum  value for external force & $-100000$ & ${\text{N}}$
+${\mathbf{F}_{\text{min}}}$ & minimum value for external force & $-100000$ & ${\text{N}}$
 \\
-${θ_{\text{max}}}$ & maximum  value for angle & $\frac{π}{2}$ & ${\text{rad}}$
+${θ_{\text{max}}}$ & maximum value for angle & $\frac{π}{2}$ & ${\text{rad}}$
 \\
-${θ_{\text{min}}}$ & minimum  value for angle & $\frac{π}{2}$ & ${\text{rad}}$
+${θ_{\text{min}}}$ & minimum value for angle & $\frac{π}{2}$ & ${\text{rad}}$
 \\
 \bottomrule
 \caption{Auxiliary Constants}

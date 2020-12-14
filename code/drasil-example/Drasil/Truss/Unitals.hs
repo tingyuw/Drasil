@@ -109,7 +109,6 @@ forceBD = ucs' (dccWDS "f_BD" (cn "force between joint B and D")
 forceCD = ucs' (dccWDS "f_CD" (cn "force between joint C and D") 
       (phrase QP.force)) (sub (eqSymb QP.force) labelCD) Real newton
 
-
 -- constraint --
 
 inConstraints :: [UncertQ]
@@ -118,21 +117,19 @@ inConstraints = map (`uq` defaultUncrt) [exForceCon, fstDistanceCon, sndDistance
 outConstraints :: [UncertQ]
 outConstraints = map (`uq` defaultUncrt) [outForceCon]
 
-
 exForceCon, fstDistanceCon, sndDistanceCon, fstAngleCon, sndAngleCon, outForceCon :: ConstrConcept
 
 exForceCon = constrained' force_1 [gtZeroConstr, sfwrc $ Bounded (Inc, sy exForceMin) (Inc, sy exForceMax)] (dbl 500)
 fstDistanceCon = constrained' distance_1 [gtZeroConstr, sfwrc $ Bounded (Exc, sy distanceMin) (Inc, sy distanceMax)] (dbl 3)
-sndDistanceCon = constrained' distance_2 [gtZeroConstr, sfwrc $ Bounded (Exc, sy distanceMin) (Inc, sy distanceMax)] (dbl 7)
-fstAngleCon = constrained' theta_1 [physc $ Bounded (Exc, 0) (Exc, sy pi_ ), sfwrc $ Bounded (Exc, sy angleMin) (Exc, sy angleMax)] (sy pi_ / 6)
-sndAngleCon = constrained' theta_2 [physc $ Bounded (Exc, 0) (Exc, sy pi_ ), sfwrc $ Bounded (Exc, sy angleMin) (Exc, sy angleMax)] (sy pi_ / 6)
+sndDistanceCon = constrained' distance_2 [gtZeroConstr, sfwrc $ Bounded (Exc, sy distanceMin) (Inc, sy distanceMax)] (dbl 3)
+fstAngleCon = constrained' theta_1 [physc $ Bounded (Exc, 0) (Exc, sy pi_ ), sfwrc $ Bounded (Exc, sy angleMin) (Exc, sy angleMax)] (sy pi_ / 4)
+sndAngleCon = constrained' theta_2 [physc $ Bounded (Exc, 0) (Exc, sy pi_ ), sfwrc $ Bounded (Exc, sy angleMin) (Exc, sy angleMax)] (sy pi_ / 4)
 
 outForceCon = cuc' "outForceCon"
   (nounPhraseSP "all the output forces")
   "output forces in the document" 
   (sub (eqSymb QP.force) labelout) newton Rational
   [physc $ UpFrom (Exc, 0)] (dbl 0)
-
 
 -- constant --
 
@@ -142,26 +139,26 @@ specParamValList = [exForceMin, exForceMax, distanceMin, distanceMax, angleMin, 
 exForceMin, exForceMax :: QDefinition
 
 exForceMin = mkQuantDef (unitary "exForceMin"
-  (nounPhraseSP "minimum  value for external force")
+  (nounPhraseSP "minimum value for external force")
   (subMin (eqSymb QP.force)) newton Rational) (-100000)
 
 exForceMax = mkQuantDef (unitary "exForceMax"
-  (nounPhraseSP "maximum  value for external force")
+  (nounPhraseSP "maximum value for external force")
   (subMax (eqSymb QP.force)) newton Rational) (100000)
 
 distanceMin = mkQuantDef (unitary "distanceMin"
-  (nounPhraseSP "minimum  value for distance")
+  (nounPhraseSP "minimum value for distance")
   (subMin (eqSymb QP.distance)) metre Rational) (dbl 0)
 
 distanceMax = mkQuantDef (unitary "distanceMax"
-  (nounPhraseSP "maximum  value for distance")
+  (nounPhraseSP "maximum value for distance")
   (subMax (eqSymb QP.distance)) metre Rational) (100000)
 
 angleMin = mkQuantDef (unitary "angleMin"
-  (nounPhraseSP "minimum  value for angle")
+  (nounPhraseSP "minimum value for angle")
   (subMin (lTheta)) radian Rational) (sy pi_ / 2)
 
 angleMax = mkQuantDef (unitary "angleMax"
-  (nounPhraseSP "maximum  value for angle")
+  (nounPhraseSP "maximum value for angle")
   (subMax (lTheta)) radian Rational) (sy pi_ / 2)
 
