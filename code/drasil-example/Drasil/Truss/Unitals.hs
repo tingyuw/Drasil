@@ -43,6 +43,8 @@ forceParam n w s = ucs'
  (dccWDS ("force" ++ n) (cn $ "force component in the " ++ w) (phrase QP.force)) 
   (sub (eqSymb QP.force) s) Real newton
 
+forceX, forceY :: UnitalChunk
+
 forceX    = forceParam "X" "x direction" labelX
 forceY    = forceParam "Y" "y direction" labelY
 
@@ -136,7 +138,7 @@ outForceCon = cuc' "outForceCon"
 specParamValList :: [QDefinition]
 specParamValList = [exForceMin, exForceMax, distanceMin, distanceMax, angleMin, angleMax]
 
-exForceMin, exForceMax :: QDefinition
+exForceMin, exForceMax, distanceMin, distanceMax, angleMin, angleMax :: QDefinition
 
 exForceMin = mkQuantDef (unitary "exForceMin"
   (nounPhraseSP "minimum value for external force")

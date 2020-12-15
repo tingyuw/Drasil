@@ -5,13 +5,10 @@ import Drasil.DocLang.SRS (datCon, propCorSol)
 import Utils.Drasil
 
 import Data.Drasil.Concepts.Computation (inValue)
-import Data.Drasil.Concepts.Documentation (assumption, code, datumConstraint, environment, 
-  funcReqDom, likelyChg, module_, nonFuncReqDom, output_, property, requirement, 
-  srs, traceyMatrix, unlikelyChg, value, vavPlan)
+import Data.Drasil.Concepts.Documentation (code, datumConstraint, environment, 
+  funcReqDom, nonFuncReqDom, output_, property, value, vavPlan)
 import Data.Drasil.Concepts.Math (calculation)
 import Data.Drasil.Concepts.Software (errMsg)
-
-import Data.Drasil.IdeaDicts (inModel, thModel)
 
 import Drasil.Truss.IMods (reactionAxIM, reactionAyIM, reactionByIM, internalAcIM,
   internalAdIM, internalBcIM, internalBdIM, internalCdIM)

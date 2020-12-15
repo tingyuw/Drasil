@@ -17,7 +17,7 @@ import Drasil.DocLang (AuxConstntSec(AuxConsProg),
   RefSec(..), RefTab(..), ReqrmntSec(..), ReqsSub(..), SCSSub(..), SRSDecl, 
   SSDSec(..), SSDSub(SSDProblem, SSDSolChSpec), SolChSpec(SCSProg), 
   TConvention(..), TSIntro(..), TraceabilitySec(TraceabilityProg), 
-  Verbosity(Verbose), intro, mkDoc, traceMatStandard, tsymb, purpDoc)
+  Verbosity(Verbose), intro, mkDoc, traceMatStandard, tsymb)
 
 import Data.Drasil.Concepts.Math (mathcon)
 

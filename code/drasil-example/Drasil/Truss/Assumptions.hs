@@ -4,7 +4,6 @@ import Language.Drasil
 import Utils.Drasil
 
 import Data.Drasil.Concepts.Documentation (assumpDom)
-import Drasil.Truss.Concepts (compression, joint, tension)
 
 assumptions :: [ConceptInstance]
 assumptions = [staticDeterminate, pinConnected, connectedatEnd, straightTruss, igWeight, 

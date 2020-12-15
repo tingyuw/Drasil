@@ -5,8 +5,8 @@ import Utils.Drasil
 
 import Data.Drasil.Concepts.Documentation (likeChgDom, unlikeChgDom)
 
-import Drasil.Truss.Assumptions (staticDeterminate, pinConnected, connectedatEnd, 
-  straightTruss, igWeight, twokindForce, applyatJoint)
+import Drasil.Truss.Assumptions (staticDeterminate, pinConnected, straightTruss,
+ igWeight, twokindForce)
 import Drasil.Truss.Goals (internalForce)
 
 --Likely Changes--

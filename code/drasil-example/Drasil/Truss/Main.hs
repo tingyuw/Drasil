@@ -4,7 +4,6 @@ import Language.Drasil.Generate (gen)
 import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website))
 
 import Drasil.Truss.Body (srs, printSetting)
-import Drasil.Truss.Concepts
 
 main :: IO()
 main = do
