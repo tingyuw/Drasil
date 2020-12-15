@@ -65,7 +65,7 @@ mkSRS = [
       [ SSDProblem $ PDProg prob []
         [ TermsAndDefs Nothing terms
         , PhySysDesc truss physSystParts figphysSys []
-        , Goals [(S "truss properties and the external force")]]
+        , Goals [S "truss properties and the external force"]]
       , SSDSolChSpec $ SCSProg
         [ Assumptions
         , TMs [] (Label : stdFields)

@@ -5,7 +5,7 @@ import Theory.Drasil (TheoryModel, tm)
 import Utils.Drasil
 
 import Drasil.Truss.References (mofjWiki, momentWiki)
-import Drasil.Truss.Unitals (forceX, forceY, moment_i)
+import Drasil.Truss.Unitals (forceX, forceY, momentI)
 import Drasil.Truss.Assumptions (staticDeterminate)
 
 tMods :: [TheoryModel]
@@ -24,6 +24,6 @@ staticEqDesc = foldlSent [S "The structure is assumed to be statically determina
   +:+ fromSource staticDeterminate]
 
 staticEqRel :: Relation
-staticEqRel = sumAll (Variable "I") (sy forceX $= sy forceY $= sy moment_i $= 0) 
+staticEqRel = sumAll (Variable "I") (sy forceX $= sy forceY $= sy momentI $= 0) 
 
 

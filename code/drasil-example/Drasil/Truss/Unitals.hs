@@ -25,7 +25,7 @@ symbols = map qw unitalChunks ++ map qw inConstraints ++ map qw outConstraints
 symbolsAll = symbols ++ inputs ++ outputs ++ map qw specParamValList
 
 unitalChunks :: [UnitalChunk]
-unitalChunks = [forceX, forceY, moment_i]
+unitalChunks = [forceX, forceY, momentI]
 
 acronyms :: [CI]
 acronyms = [assumption, dataDefn, genDefn, goalStmt, inModel, likelyChg,
@@ -66,10 +66,10 @@ labelCD = Label "CD"
 labelout = Label "out"
 labeli = Label "i"  
 
-moment_i, force_1, distance_1, distance_2, theta_1, theta_2, forceAx, 
+momentI, force_1, distance_1, distance_2, theta_1, theta_2, forceAx, 
   forceAy, forceBy, forceAC, forceAD, forceBC, forceBD, forceCD :: UnitalChunk
 
-moment_i = ucs' (dccWDS "m_i" (cn "moment component of joint i") 
+momentI = ucs' (dccWDS "m_i" (cn "moment component of joint i") 
       (phrase QP.moment)) (sub (eqSymb QP.moment) labeli) Real momentOfForceU
 
 force_1 = ucs' (dccWDS "f_1" (cn "external force") 
@@ -146,7 +146,7 @@ exForceMin = mkQuantDef (unitary "exForceMin"
 
 exForceMax = mkQuantDef (unitary "exForceMax"
   (nounPhraseSP "maximum value for external force")
-  (subMax (eqSymb QP.force)) newton Rational) (100000)
+  (subMax (eqSymb QP.force)) newton Rational) 100000
 
 distanceMin = mkQuantDef (unitary "distanceMin"
   (nounPhraseSP "minimum value for distance")
@@ -154,13 +154,13 @@ distanceMin = mkQuantDef (unitary "distanceMin"
 
 distanceMax = mkQuantDef (unitary "distanceMax"
   (nounPhraseSP "maximum value for distance")
-  (subMax (eqSymb QP.distance)) metre Rational) (100000)
+  (subMax (eqSymb QP.distance)) metre Rational) 100000
 
 angleMin = mkQuantDef (unitary "angleMin"
   (nounPhraseSP "minimum value for angle")
-  (subMin (lTheta)) radian Rational) (sy pi_ / 2)
+  (subMin lTheta) radian Rational) (sy pi_ / 2)
 
 angleMax = mkQuantDef (unitary "angleMax"
   (nounPhraseSP "maximum value for angle")
-  (subMax (lTheta)) radian Rational) (sy pi_ / 2)
+  (subMax lTheta) radian Rational) (sy pi_ / 2)
 
