@@ -1,0 +1,10 @@
+# external force (N)
+500.0
+# distance first (m)
+3.0
+# distance second (m)
+3.0
+# angle first (degree)
+45
+# angle second (degree)
+45

@@ -1,0 +1,10 @@
+# external force (N)
+500.0
+# distance from joint A to joint D (m)
+3.0
+# distance from joint D to joint B (m)
+3.0
+# angle between member 1 and 3 (rad)
+45.0
+# angle between member 2 and 4 (rad)
+45.0
