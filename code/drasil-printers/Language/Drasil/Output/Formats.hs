@@ -9,12 +9,13 @@ import Build.Drasil ((+:+), Command, makeS, mkCheckedCommand, mkCommand, mkFreeV
 -- the generated output (specified /without/ a file extension)
 type Filename = String
 
-data DocType = SRS | MG | MIS | Website
+data DocType = SRS | MG | MIS | Website | Notebook
 
 data DocSpec = DocSpec DocType Filename
 
 instance RuleTransformer DocSpec where
   makeRule (DocSpec Website _) = []
+  makeRule (DocSpec Notebook _) = []
   makeRule (DocSpec dt fn) = [
     mkRule (makeS $ map toLower $ show dt) [pdfName] [],
     mkFile pdfName [makeS $ fn ++ ".tex"] $
@@ -29,6 +30,7 @@ instance Show DocType where
   show MG       = "MG"
   show MIS      = "MIS"
   show Website  = "Website"
+  show Notebook = "Notebook"
              
 -- | LaTeX helper
 data DocClass = DocClass (Maybe String) String

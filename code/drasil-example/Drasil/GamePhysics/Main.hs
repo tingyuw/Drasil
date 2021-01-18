@@ -7,7 +7,7 @@ module Main where
 --   ConstantRepr(..), InputModule(..), matchConcepts, AuxFile(..), 
 --   Visibility(..), defaultChoices)
 import Language.Drasil.Generate (gen)
-import Language.Drasil.Printers (DocType(SRS, Website), DocSpec(DocSpec))
+import Language.Drasil.Printers (DocType(SRS, Website, Notebook), DocSpec(DocSpec))
 
 import Drasil.GamePhysics.Body (srs, printSetting) -- sysInfo
 
@@ -37,5 +37,6 @@ main :: IO ()
 main = do
   gen (DocSpec SRS "GamePhysics_SRS") srs  printSetting
   gen (DocSpec Website "GamePhysics_SRS") srs printSetting
+  gen (DocSpec Notebook "GamePhysics_SRS") srs printSetting
   -- When ready to generate code from GamePhysics, uncomment this file
   -- genCode choices code

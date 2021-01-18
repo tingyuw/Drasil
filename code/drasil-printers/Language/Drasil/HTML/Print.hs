@@ -1,4 +1,4 @@
-module Language.Drasil.HTML.Print(genHTML) where
+module Language.Drasil.HTML.Print(genHTML, conHTMLtoStr) where
 
 import Prelude hiding (print, (<>))
 import Data.List (sortBy)
@@ -59,6 +59,19 @@ build fn (Document t a c) =
   body (articleTitle (pSpec t) $$ author (pSpec a)
   $$ print c
   ))
+
+-- Helper for creating jupyter notebook
+conHTMLtoStr :: String -> Document -> String
+conHTMLtoStr fn (Document t a c) = 
+  show (text "<!DOCTYPE html>" $$
+  html (headTag (linkCSS fn $$ title (titleSpec t) $$
+  text "<meta charset=\"utf-8\">" $$
+  text ("<script " ++
+  "src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML\'>" ++
+  "</script>")) $$
+  body (articleTitle (pSpec t) $$ author (pSpec a)
+  $$ print c
+  )))
 
 -- Helper for rendering a D from Latex print
 printMath :: D -> Doc

@@ -6,7 +6,7 @@ import Language.Drasil.Code (Choices(..), CodeSpec, codeSpec, Comments(..),
   ConstantRepr(..), InputModule(..), AuxFile(..), Visibility(..),
   defaultChoices)  
 import Language.Drasil.Generate (gen, genCode)
-import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website))
+import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website, Notebook))
 
 import Drasil.Truss.Body (si, srs, printSetting)
 
@@ -33,6 +33,7 @@ choices = defaultChoices {
 
 main :: IO()
 main = do
-  gen (DocSpec SRS     "Truss_SRS") srs printSetting
-  gen (DocSpec Website "Truss_SRS") srs printSetting
+  gen (DocSpec SRS      "Truss_SRS") srs printSetting
+  gen (DocSpec Website  "Truss_SRS") srs printSetting
+  gen (DocSpec Notebook "Truss_SRS") srs printSetting
   genCode choices code

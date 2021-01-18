@@ -10,9 +10,9 @@ import Data.Time.Calendar (showGregorian)
 
 import Build.Drasil (genMake)
 import Language.Drasil
-import Language.Drasil.Printers (Format(TeX, HTML), DocSpec(DocSpec), 
-  DocType(SRS, MG, MIS, Website), Filename, makeCSS, genHTML,
-  genTeX, PrintingInformation)
+import Language.Drasil.Printers (Format(TeX, HTML, JSON), DocSpec(DocSpec), 
+  DocType(SRS, MG, MIS, Website, Notebook), Filename, makeCSS, genHTML,
+  genTeX, genJSON, PrintingInformation)
 import Language.Drasil.Code (generator, generateCode, Choices(..), CodeSpec(..),
   Lang(..), getSampleData, readWithDataDesc, sampleInputDD, 
   unPP, unJP, unCSP, unCPPP, unSP)
@@ -41,6 +41,7 @@ prntDoc (DocSpec dt fn) = prntDoc' dt fn (fmt dt)
         fmt MG  = TeX
         fmt MIS = TeX
         fmt Website = HTML
+        fmt Notebook = JSON
 
 prntDoc' :: Show a => a -> String -> Format -> Document -> PrintingInformation -> IO ()
 prntDoc' dt' fn format body' sm = do
@@ -50,6 +51,7 @@ prntDoc' dt' fn format body' sm = do
   hClose outh
   where getExt TeX  = ".tex"
         getExt HTML = ".html"
+        getExt JSON = ".ipynb"
         getExt _    = error "we can only write TeX/HTML (for now)"
 
 -- | Helper for writing the Makefile(s)
@@ -63,6 +65,7 @@ prntMake ds@(DocSpec dt _) =
 writeDoc :: PrintingInformation -> Format -> Filename -> Document -> Doc
 writeDoc s TeX  _  doc = genTeX doc s
 writeDoc s HTML fn doc = genHTML s fn doc
+writeDoc s JSON fn doc = genJSON s fn doc
 writeDoc _    _  _   _ = error "we can only write TeX/HTML (for now)"
 
 -- | Calls the code generator
