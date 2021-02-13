@@ -9,7 +9,7 @@ import GHC.IO.Encoding
 --   ConstantRepr(..), InputModule(..), matchConcepts, AuxFile(..), 
 --   Visibility(..), defaultChoices)
 import Language.Drasil.Generate (gen)
-import Language.Drasil.Printers (DocType(SRS, Website), DocSpec(DocSpec))
+import Language.Drasil.Printers (DocType(SRS, Website, Notebook), DocSpec(DocSpec))
 
 import Drasil.HGHC.Body (srs, printSetting) --thisSI
 
@@ -41,5 +41,6 @@ main = do
   setLocaleEncoding utf8
   gen (DocSpec Website "HGHC_SRS") srs printSetting
   gen (DocSpec SRS "HGHC_SRS")     srs printSetting
+  gen (DocSpec Notebook "HGHC_SRS") srs printSetting
   -- When ready to generate code, uncomment this file
   --genCode thisChoices thisCode

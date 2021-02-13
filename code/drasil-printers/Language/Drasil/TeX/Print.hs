@@ -255,12 +255,12 @@ needs (Quote _) = Text
 
 -- print all Spec through here
 spec :: Spec -> D
-spec a@(s :+: t) = s' <> t'
+spec a@(s :+: t) = s' <> t' 
   where
     ctx = const $ needs a
     s' = switch ctx $ spec s
     t' = switch ctx $ spec t
-spec (E ex) = toMath $ pExpr ex
+spec (E ex) = toMath $ pExpr ex 
 spec (S s)  = either error (pure . text . concatMap escapeChars) $ checkValidStr s invalid
   where
     invalid = ['&', '#', '$', '%', '&', '~', '^', '\\', '{', '}']

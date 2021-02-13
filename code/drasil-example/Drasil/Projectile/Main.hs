@@ -11,7 +11,7 @@ import Language.Drasil.Code (Choices(..), Comments(..),
   ConstantRepr(..), InputModule(..), CodeConcept(..), matchConcepts, SpaceMatch,
   matchSpaces, AuxFile(..), Visibility(..), defaultChoices, codeSpec)
 import Language.Drasil.Generate (gen, genCode)
-import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website))
+import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website, Notebook))
 
 import GOOL.Drasil (CodeType(..))
 
@@ -30,6 +30,7 @@ main = do
   setLocaleEncoding utf8
   gen (DocSpec SRS     "Projectile_SRS") srs printSetting
   gen (DocSpec Website "Projectile_SRS") srs printSetting
+  gen (DocSpec Notebook "Projectile_SRS") srs printSetting
   genCodeWithChoices choiceCombos
 
 genCodeWithChoices :: [Choices] -> IO ()

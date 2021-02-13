@@ -65,7 +65,7 @@ prntMake ds@(DocSpec dt _) =
 writeDoc :: PrintingInformation -> Format -> Filename -> Document -> Doc
 writeDoc s TeX  _  doc = genTeX doc s
 writeDoc s HTML fn doc = genHTML s fn doc
-writeDoc s JSON fn doc = genJSON s fn doc
+writeDoc s JSON _ doc  = genJSON s doc
 writeDoc _    _  _   _ = error "we can only write TeX/HTML (for now)"
 
 -- | Calls the code generator

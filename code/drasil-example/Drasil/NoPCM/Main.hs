@@ -7,7 +7,7 @@ import Language.Drasil.Code (Choices(..), CodeSpec, codeSpec, Comments(..),
   Modularity(..), Structure(..), ConstantStructure(..), ConstantRepr(..), 
   InputModule(..), AuxFile(..), Visibility(..), defaultChoices)
 import Language.Drasil.Generate (gen, genCode)
-import Language.Drasil.Printers (DocType(SRS, Website), DocSpec(DocSpec))
+import Language.Drasil.Printers (DocType(SRS, Website, Notebook), DocSpec(DocSpec))
 
 import Data.Drasil.ExternalLibraries.ODELibraries (scipyODEPckg, osloPckg, 
   apacheODEPckg, odeintPckg)
@@ -43,4 +43,5 @@ main = do
   setLocaleEncoding utf8
   gen (DocSpec SRS "NoPCM_SRS") srs printSetting
   gen (DocSpec Website "NoPCM_SRS") srs printSetting
+  gen (DocSpec Notebook "NoPCM_SRS") srs printSetting
   genCode choices code

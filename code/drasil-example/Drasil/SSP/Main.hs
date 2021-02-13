@@ -9,7 +9,7 @@ import GHC.IO.Encoding
 --   ConstantRepr(..), InputModule(..), matchConcepts, AuxFile(..), 
 --   Visibility(..), defaultChoices)
 import Language.Drasil.Generate (gen)
-import Language.Drasil.Printers (DocType(SRS, Website), DocSpec(DocSpec))
+import Language.Drasil.Printers (DocType(SRS, Website, Notebook), DocSpec(DocSpec))
 
 import Drasil.SSP.Body (srs, printSetting) -- si
 
@@ -40,5 +40,6 @@ main = do
   setLocaleEncoding utf8
   gen (DocSpec Website "SSP_SRS") srs printSetting
   gen (DocSpec SRS "SSP_SRS")     srs printSetting
+  gen (DocSpec Notebook "SSP_SRS") srs printSetting
   -- for when we can generate code again, uncomment this file
   --genCode choices code

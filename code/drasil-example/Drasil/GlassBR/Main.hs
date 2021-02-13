@@ -8,7 +8,7 @@ import Language.Drasil.Code (Choices(..), CodeSpec, codeSpec, Comments(..),
   ConstantRepr(..), InputModule(..), AuxFile(..), Visibility(..),
   defaultChoices)
 import Language.Drasil.Generate (gen, genCode)
-import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website))
+import Language.Drasil.Printers (DocSpec(DocSpec), DocType(SRS, Website, Notebook))
 
 import Drasil.GlassBR.Body (si, srs, printSetting)
 import Drasil.GlassBR.ModuleDefs (allMods)
@@ -39,4 +39,5 @@ main = do
   setLocaleEncoding utf8
   gen (DocSpec SRS "GlassBR_SRS")     srs printSetting
   gen (DocSpec Website "GlassBR_SRS") srs printSetting
+  gen (DocSpec Notebook "GlassBR_SRS") srs printSetting
   genCode choices code
