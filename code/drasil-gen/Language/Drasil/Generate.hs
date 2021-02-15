@@ -30,9 +30,11 @@ prnt sm dt@(DocSpec Website fn) body =
      outh2 <- openFile ("Website/" ++ fn ++ ".css") WriteMode
      hPutStrLn outh2 $ render (makeCSS body)
      hClose outh2
+prnt sm dt@(DocSpec Notebook _) body =
+  do prntDoc dt body sm 
 prnt sm dt@(DocSpec _ _) body =
-  do prntDoc dt body sm
-     prntMake dt
+  do prntDoc dt body sm 
+     prntMake dt 
 
 -- | Helper for writing the documents (TeX / HTML) to file
 prntDoc :: DocSpec -> Document -> PrintingInformation -> IO ()
